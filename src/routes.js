@@ -4,15 +4,22 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const AppStack = createStackNavigator();
 
-import Home from './pages/Home';
 import Login from './pages/Login';
+import Home from './pages/Home';
+
 
 export default function Routes(){
     return (
         <NavigationContainer>
-            <AppStack.Navigator>
-                <AppStack.Screen name="Home" component={Home} />
-                <AppStack.Screen name="Login" component={Login} />
+            <AppStack.Navigator initialRouteName="Login">
+                <AppStack.Screen name="Login" component={Login} 
+                options={{
+                    title: '',
+                    headerStyle:{
+                        backgroundColor: '#000000'
+                    }
+                } } />
+                <AppStack.Screen name="Home" component={Home} />                
             </AppStack.Navigator>
         </NavigationContainer>
     );
