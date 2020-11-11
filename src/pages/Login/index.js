@@ -5,6 +5,11 @@ import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpaci
 
 export default function Login({ navigation }) {
     return (
+      <View>
+       <Text>Open up App.js to start working on your app!</Text>
+       <StatusBar style="auto" />
+     </View>
+      /*
         <KeyboardAvoidingView style={styles.containerLogin}>
     <View style={styles.container}>
       <TextInput style={styles.input}                    // Campo do email
@@ -28,6 +33,7 @@ export default function Login({ navigation }) {
  
     </View>     
   </KeyboardAvoidingView>
+  */
   );
 }
 
