@@ -1,63 +1,42 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+
 import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import Home from './src/Home';
+import Login from './src/Login';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
+
     // <View style={styles.container}>
     //   <Text>Open up App.js to start working on your app!</Text>
     //   <StatusBar style="auto" />
     // </View>
 
-  <KeyboardAvoidingView style={styles.containerLogin}>
-    <View style={styles.container}>
-      <TextInput style={styles.input}                    // Campo do email
-        placeholder="Email"
-        autoCorrect={false}
-        onChangeText={()=>{}}/>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName=""> 
+        <Stack.Screen name="" component={Login}/>     
+        <Stack.Screen name="Home" component={Home}/>
+      </Stack.Navigator>
+    </NavigationContainer>
 
-      <TextInput style={styles.input}                    // Campo da senha
-        placeholder="Senha"
-        autoCorrect={false}
-        onChangeText={()=>{}}/>
-
-      <TouchableOpacity style={styles.btnAcessar}>
-        <Text>Acessar</Text>
-      </TouchableOpacity>
- 
-    </View>     
-  </KeyboardAvoidingView>
+  
   );
 }
 
 const styles = StyleSheet.create({
-  containerLogin: {
+  container: {
     flex: 1,
     backgroundColor: '#000000',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  container:{
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '90%',
-  },
-  input:{
-    backgroundColor: '#FFF',
-    width: '90%',
-    marginBottom:15,
-    color:'#222',
-    fontSize: 17,
-    borderRadius: 7,
-    padding: 10,
-  },
-  btnAcessar:{
-    backgroundColor: '#35AAFF',
-    width: '90%',
-    height: 45,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 7,
   }
 });
+
+
