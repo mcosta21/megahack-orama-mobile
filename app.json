@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "megahack-orama-5.0",
-    "slug": "megahack-orama-5.0",
+    "name": "megahack-orama-mobile",
+    "slug": "megahack-orama-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
