@@ -1,8 +1,15 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Button } from 'react-native';
 
-export default function Login({ navigation }) {
+export default function Login(){
+    const { navigate } = useNavigation();
+
+    function handleNavigateToHome(){
+      navigate('Tabs');
+    }
+
     return (
 
       <KeyboardAvoidingView style={styles.containerLogin}>
@@ -17,10 +24,11 @@ export default function Login({ navigation }) {
           autoCorrect={false}
           onChangeText={()=>{}} />
 
-        <TouchableOpacity style={styles.btnAcessar} onPress={ () => navigation.navigate('Home')}>
+        <TouchableOpacity style={styles.btnAcessar} onPress={handleNavigateToHome}>
           <Text>Acessar</Text>
         </TouchableOpacity>
       </View>     
+
   </KeyboardAvoidingView>
 
   );

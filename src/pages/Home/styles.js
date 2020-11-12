@@ -1,25 +1,42 @@
 import { StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
 export default StyleSheet.create({
     
     container: {
         flex: 1,
+        paddingHorizontal: 24,
+        backgroundColor: '#182024',
+        paddingTop: Constants.statusBarHeight + 20,
         flexDirection: "column"
     },
-    image: {
-        flex: 1,
-        resizeMode: "cover",
-        justifyContent: "center",
+    header: {
+        flexDirection: "row",
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: '#FFF',
+        paddingBottom: 20
     },
-    div: {
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    text: {
-        fontSize: 32,
-        color: '#004a28',
+    title: {
+        fontSize: 22,
+        color: '#FFF',
         fontFamily: 'Ubuntu_700Bold'
-    }
+    },
+    content: {
+        marginTop: 20
+    },
+    welcomeName: {
+        fontSize: 22,
+        color: '#FFF',
+        fontFamily: 'Ubuntu_700Bold'
+    },
+    welcomePhrase: {
+        marginTop: 15,
+        fontSize: 18,
+        color: '#34F683',
+        fontFamily: 'Ubuntu_700Bold'
+    },
+    
 
 });

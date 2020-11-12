@@ -1,26 +1,34 @@
 import React from 'react';
-import { View, Text, ImageBackground } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { Feather } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import styles from './styles';
 
-import backgroundImage from '../../assets/loading-background.png';
+import Loading from '../Loading';
+import Login from '../Login';
+
+const Tab = createBottomTabNavigator();
 
 export default function Home() {
 
     return (
       <View style={styles.container}>
-          <LinearGradient
-            colors={['#34F683', '#24AC6E']}
-            style={{flex: 1}}
-          >
-            <ImageBackground source={backgroundImage} style={styles.image}>
-              <View style={styles.div}>
-                <Text style={styles.text}>ÓRAMA</Text>
-              </View>
 
-            </ImageBackground>
-          </LinearGradient>
-        
+          <View style={styles.header}>
+            <Feather name="align-left" size={26} color="#FFF"/>
+            <Text style={styles.title}>ÓRAMA</Text>
+            <Feather name="settings" size={23} color="#FFF"/>
+          </View>
+          
+          <SafeAreaView style={styles.content}>
+            <ScrollView>
+              <View style={styles.welcome}>
+                <Text style={styles.welcomeName}>Olá, Marcio</Text>
+                <Text style={styles.welcomePhrase}>Pronto para investir hoje?</Text>
+              </View>
+            </ScrollView>
+          </SafeAreaView>
+
      </View>
   );
 }

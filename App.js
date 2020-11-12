@@ -1,8 +1,9 @@
 import React from 'react';
-import Routes from './src/routes';
 import { AppLoading } from 'expo';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts, Ubuntu_400Regular, Ubuntu_500Medium, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
+
+import AppStack from './src/routes/AppStack';
 
 export default function App() {
   
@@ -17,8 +18,8 @@ export default function App() {
   }
   return (
     <>
+      <AppStack />
       <StatusBar style="dark"/>
-      <Routes />
     </>
   );
 }
