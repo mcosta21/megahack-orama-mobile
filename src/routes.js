@@ -11,7 +11,7 @@ import Home from './pages/Home';
 export default function Routes(){
     return (
         <NavigationContainer>
-            <AppStack.Navigator initialRouteName="Login">
+            <AppStack.Navigator initialRouteName="Home">
                 <AppStack.Screen name="Login" component={Login} 
                 options={{
                     title: '',
@@ -19,7 +19,7 @@ export default function Routes(){
                         backgroundColor: '#000000'
                     }
                 } } />
-                <AppStack.Screen name="Home" component={Home} />                
+                <AppStack.Screen name="Home" component={Home} options={{headerShown: false}}/>                
             </AppStack.Navigator>
         </NavigationContainer>
     );

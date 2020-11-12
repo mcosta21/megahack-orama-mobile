@@ -1,10 +1,26 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import styles from './styles';
+
+import backgroundImage from '../../assets/loading-background.png';
 
 export default function Home() {
+
     return (
-      <View>
-       <Text>Tinha dois patos na lagoa, um pato olhou para o outro e fez "Quak", o outro ouviu e disse "Nossa, eu ia dizer isso agora."</Text>
+      <View style={styles.container}>
+          <LinearGradient
+            colors={['#34F683', '#24AC6E']}
+            style={{flex: 1}}
+          >
+            <ImageBackground source={backgroundImage} style={styles.image}>
+              <View style={styles.div}>
+                <Text style={styles.text}>ÓRAMA</Text>
+              </View>
+
+            </ImageBackground>
+          </LinearGradient>
+        
      </View>
   );
 }
