@@ -1,39 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 
 import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Button } from 'react-native';
 
 export default function Login({ navigation }) {
     return (
-      <View>
-       <Text>Open up App.js to start working on your app!</Text>
-       <StatusBar style="auto" />
-     </View>
-      /*
-        <KeyboardAvoidingView style={styles.containerLogin}>
-    <View style={styles.container}>
-      <TextInput style={styles.input}                    // Campo do email
-        placeholder="Email"
-        autoCorrect={false}
-        onChangeText={()=>{}}/>
 
-      <TextInput style={styles.input}                    // Campo da senha
-        placeholder="Senha"
-        autoCorrect={false}
-        onChangeText={()=>{}}/>
+      <KeyboardAvoidingView style={styles.containerLogin}>
+        <View style={styles.container}>
+        <TextInput style={styles.input}                    // Campo do email
+          placeholder="Email"
+          autoCorrect={false}
+          onChangeText={()=>{}} />
 
-      <TouchableOpacity style={styles.btnAcessar}>
-        <Text>Acessar</Text>
-      </TouchableOpacity>
+        <TextInput style={styles.input}                    // Campo da senha
+          placeholder="Senha"
+          autoCorrect={false}
+          onChangeText={()=>{}} />
 
-      <Button style={styles.btnAcessar}
-      title="botaoTeste"
-      onPress={ () => navigation.navigate('Home')}
-      />
- 
-    </View>     
+        <TouchableOpacity style={styles.btnAcessar} onPress={ () => navigation.navigate('Home')}>
+          <Text>Acessar</Text>
+        </TouchableOpacity>
+      </View>     
   </KeyboardAvoidingView>
-  */
+
   );
 }
 
