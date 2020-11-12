@@ -41,22 +41,21 @@ export default function Tabs() {
                     activeTintColor: '#004A28'
                 }}
             >
-                
-                <Screen 
-                    name="Loading" 
-                    component={Loading}
-                    options={{
-                        tabBarIcon: ({color}) => {
-                            return (<FontAwesome5 name="star" size={24} color={color}/>);
-                        }
-                    }}
-                />
                 <Screen 
                     name="Home" 
                     component={Home} 
                     options={{
                         tabBarIcon: ({color}) => {
                             return (<AntDesign name="home" size={28} color={color}/>);
+                        }
+                    }}
+                />
+                <Screen 
+                    name="Loading" 
+                    component={Loading}
+                    options={{
+                        tabBarIcon: ({color}) => {
+                            return (<FontAwesome5 name="star" size={24} color={color}/>);
                         }
                     }}
                 />
