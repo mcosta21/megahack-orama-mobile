@@ -11,7 +11,9 @@ import Home from '../pages/Home';
 export default function Tabs() {
     return (
         <LinearGradient
-            colors={['#34F683', '#24AC6E']}
+            colors={['#24AC6E', '#34F683']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
             style={{flex: 1}}
         >
             <Navigator
@@ -45,7 +47,7 @@ export default function Tabs() {
                     component={Loading}
                     options={{
                         tabBarIcon: ({color}) => {
-                            return (<FontAwesome5 name="star" size={26} color={color}/>);
+                            return (<FontAwesome5 name="star" size={24} color={color}/>);
                         }
                     }}
                 />
@@ -54,7 +56,7 @@ export default function Tabs() {
                     component={Home} 
                     options={{
                         tabBarIcon: ({color}) => {
-                            return (<AntDesign name="home" size={30} color={color}/>);
+                            return (<AntDesign name="home" size={28} color={color}/>);
                         }
                     }}
                 />
@@ -63,7 +65,7 @@ export default function Tabs() {
                     component={Loading}
                     options={{
                         tabBarIcon: ({color}) => {
-                            return (<MaterialIcons name="attach-money" size={32} color={color}/>);
+                            return (<MaterialIcons name="attach-money" size={30} color={color}/>);
                         }
                     }}
                 />
@@ -72,7 +74,7 @@ export default function Tabs() {
                     component={Loading}
                     options={{
                         tabBarIcon: ({color}) => {
-                            return (<FontAwesome5 name="user" size={25} color={color}/>);
+                            return (<FontAwesome5 name="user" size={23} color={color}/>);
                         }
                     }}
                 />

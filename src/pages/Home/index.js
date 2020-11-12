@@ -6,6 +6,7 @@ import styles from './styles';
 
 import Loading from '../Loading';
 import Login from '../Login';
+import { StatusBar } from 'expo-status-bar';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +14,7 @@ export default function Home() {
 
     return (
       <View style={styles.container}>
-
+          <StatusBar style="light"/>
           <View style={styles.header}>
             <Feather name="align-left" size={26} color="#FFF"/>
             <Text style={styles.title}>ÓRAMA</Text>
@@ -28,7 +29,7 @@ export default function Home() {
               </View>
 
               <View>
-                
+
               </View>
 
             </ScrollView>
