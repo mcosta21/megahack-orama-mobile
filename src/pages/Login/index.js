@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, 
+  Text, 
+  View, 
+  KeyboardAvoidingView, 
+  TextInput, 
+  TouchableOpacity 
+} from 'react-native';
 
 export default function Login({ navigation }) {
     return (
@@ -19,11 +25,12 @@ export default function Login({ navigation }) {
 
         <TouchableOpacity style={styles.btnAcessar} 
         onPress={ () => navigation.navigate('Home')}>
-          <Text>Acessar</Text>
+          <Text style={styles.textoAcessar}>Acessar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.btnRegistrar}>
-          <Text>Criar conta</Text>
+        <TouchableOpacity style={styles.btnCadastrar}
+        onPress={ () => navigation.navigate('Cadastrar')}>
+          <Text style={styles.textoCadastrar}>Criar conta</Text>
         </TouchableOpacity>
 
 
@@ -47,6 +54,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '90%',
+    paddingBottom: 30,
   },
 
   input:{
@@ -68,7 +76,16 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
 
-  btnRegistrar:{
+  btnCadastrar:{
     marginTop: 10,
+  },
+
+  textoAcessar:{
+    color: '#FFF',
+    fontSize: 18,
+  },
+
+  textoCadastrar:{
+    color: '#FFF',
   }
 });
