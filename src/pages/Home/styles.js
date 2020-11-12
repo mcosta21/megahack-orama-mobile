@@ -14,8 +14,6 @@ export default StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderBottomWidth: 1,
-        borderBottomColor: '#FFF',
         paddingBottom: 20
     },
     title: {
@@ -24,7 +22,8 @@ export default StyleSheet.create({
         fontFamily: 'Ubuntu_700Bold'
     },
     content: {
-        marginTop: 20
+        marginTop: 20,
+        flex: 1, 
     },
     welcomeName: {
         fontSize: 22,

@@ -26,6 +26,11 @@ export default function Home() {
                 <Text style={styles.welcomeName}>Olá, Marcio</Text>
                 <Text style={styles.welcomePhrase}>Pronto para investir hoje?</Text>
               </View>
+
+              <View>
+                
+              </View>
+
             </ScrollView>
           </SafeAreaView>
 
