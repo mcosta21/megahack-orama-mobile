@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const { Navigator, Screen } = createBottomTabNavigator();
@@ -30,30 +30,49 @@ export default function Tabs() {
                     },
                     iconStyle: {
                         flex: 0,
-                        width: 25,
-                        height: 25
+                        width: 30,
+                        height: 30,
+                        color: '#FFF'
                     },
                     showLabel: false,
-                    inactiveTintColor: 'blue',
-                    activeTintColor: 'green'
+                    inactiveTintColor: '#FFF',
+                    activeTintColor: '#004A28'
                 }}
             >
                 
                 <Screen 
-                    name="Home" 
-                    component={Home} 
+                    name="Loading" 
+                    component={Loading}
                     options={{
-                        tabBarIcon: () => {
-                            return (<AntDesign name="home" size={25}/>);
+                        tabBarIcon: ({color}) => {
+                            return (<FontAwesome5 name="star" size={26} color={color}/>);
                         }
                     }}
                 />
                 <Screen 
-                    name="Loading" 
+                    name="Home" 
+                    component={Home} 
+                    options={{
+                        tabBarIcon: ({color}) => {
+                            return (<AntDesign name="home" size={30} color={color}/>);
+                        }
+                    }}
+                />
+                <Screen 
+                    name="Loading3" 
                     component={Loading}
                     options={{
-                        tabBarIcon: () => {
-                            return (<AntDesign name="home" size={25}/>);
+                        tabBarIcon: ({color}) => {
+                            return (<MaterialIcons name="attach-money" size={32} color={color}/>);
+                        }
+                    }}
+                />
+                <Screen 
+                    name="Loading1" 
+                    component={Loading}
+                    options={{
+                        tabBarIcon: ({color}) => {
+                            return (<FontAwesome5 name="user" size={25} color={color}/>);
                         }
                     }}
                 />
