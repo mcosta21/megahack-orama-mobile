@@ -7,6 +7,7 @@ const AppStack = createStackNavigator();
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Cadastrar from './pages/Cadastrar';
+import Amigos from './pages/Amigos';
 
 
 export default function Routes(){
@@ -21,7 +22,11 @@ export default function Routes(){
                     }
                 } } />
                 <AppStack.Screen name="Home" component={Home} />
-                <AppStack.Screen name="Cadastrar" component={Cadastrar} />                
+                <AppStack.Screen name="Cadastrar" component={Cadastrar} 
+                options={{
+                    title: 'Registrar conta',
+                } } />
+                <AppStack.Screen name="Amigos" component={Amigos} />               
             </AppStack.Navigator>
         </NavigationContainer>
     );
