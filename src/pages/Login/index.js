@@ -1,25 +1,32 @@
 import React from 'react';
 
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
 
 export default function Login({ navigation }) {
     return (
 
       <KeyboardAvoidingView style={styles.containerLogin}>
         <View style={styles.container}>
-        <TextInput style={styles.input}                    // Campo do email
+        <TextInput style={styles.input}                    // Campo do Email
           placeholder="Email"
           autoCorrect={false}
           onChangeText={()=>{}} />
 
-        <TextInput style={styles.input}                    // Campo da senha
+        <TextInput style={styles.input}                    // Campo da Senha
           placeholder="Senha"
           autoCorrect={false}
           onChangeText={()=>{}} />
 
-        <TouchableOpacity style={styles.btnAcessar} onPress={ () => navigation.navigate('Home')}>
+        <TouchableOpacity style={styles.btnAcessar} 
+        onPress={ () => navigation.navigate('Home')}>
           <Text>Acessar</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity style={styles.btnRegistrar}>
+          <Text>Criar conta</Text>
+        </TouchableOpacity>
+
+
       </View>     
   </KeyboardAvoidingView>
 
@@ -27,18 +34,21 @@ export default function Login({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+
   containerLogin: {
     flex: 1,
     backgroundColor: '#000000',
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   container:{
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     width: '90%',
   },
+
   input:{
     backgroundColor: '#FFF',
     width: '90%',
@@ -48,6 +58,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     padding: 10,
   },
+
   btnAcessar:{
     backgroundColor: '#35AAFF',
     width: '90%',
@@ -55,5 +66,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 7,
+  },
+
+  btnRegistrar:{
+    marginTop: 10,
   }
 });
