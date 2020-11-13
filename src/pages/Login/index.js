@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import {  Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
+import InputText from '../../components/InputText';
 
 export default function Login( {navigation} ){
     const { navigate } = useNavigation();
@@ -21,23 +22,24 @@ export default function Login( {navigation} ){
         </View>
 
         <View style={styles.campoCabecalho}>
-         <Text style={styles.cabecalho}>Email</Text>
+         <Text style={styles.cabecalho}>E-mail</Text>
         </View>
 
-        <TextInput style={styles.input}                    
-          placeholder="Digite seu email"
+        <InputText 
+          placeholder="Digite seu e-mail"
           autoCorrect={false}
-          onChangeText={()=>{}} />
+          onChangeText={()=>{}}
+        />
 
         <View style={styles.campoCabecalho}>
          <Text style={styles.cabecalho} >Senha</Text>
         </View>
 
-        <TextInput 
-          style={styles.input}                    
+        <InputText 
           placeholder="Digite sua senha"
           autoCorrect={false}
-          onChangeText={()=>{}} />
+          onChangeText={()=>{}}
+        />
 
         <TouchableOpacity style={styles.campoEsqueci}
           onPress={ () => navigation.navigate('Create')}>
@@ -58,7 +60,7 @@ export default function Login( {navigation} ){
 
       </ImageBackground>     
 
-  </KeyboardAvoidingView>
+    </KeyboardAvoidingView>
 
   );
 };
