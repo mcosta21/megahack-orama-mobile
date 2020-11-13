@@ -14,7 +14,7 @@ export default function Login(){
     const { navigate } = useNavigation();
 
     function handleNavigateToHome(){
-      navigate('Tabs');
+      navigate('Drawer');
     }
 
     return (
