@@ -11,17 +11,6 @@ export default StyleSheet.create({
 
     },
 
-    input:{
-        backgroundColor: '#232B32',
-        width: '80%',
-        height: '10%',
-        marginBottom:20,
-        color:'#222',
-        fontSize: 17,
-        borderRadius: 8,
-        padding: 10,
-    },
-
     btnRegistrar:{
         backgroundColor: '#34F683',
         width: '80%',
