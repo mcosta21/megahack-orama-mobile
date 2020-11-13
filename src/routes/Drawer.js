@@ -1,8 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, } from '@react-navigation/drawer';
-import Login from '../pages/Login';
-import Loading from '../pages/Loading';
 import Tabs from './Tabs';
 
 const { Navigator, Screen } = createDrawerNavigator();
@@ -22,13 +20,28 @@ function CustomDrawerComp(props){
   const {navigation} = props;
 
   return (
-    <DrawerContentScrollView {...props}>
-      <View style={{flexGrow: 2}}>
+    <DrawerContentScrollView {...props} style={styles.container}>
+      <View style={{ flexGrow: 2 }}>
         <DrawerItem
+          style={styles.option}
           label="Teste"
+          onPress={() => navigation.navigate('Login')}
+        />
+        <DrawerItem
+          style={styles.option}
+          label="Teste2"
           onPress={() => navigation.navigate('Login')}
         />
       </View>
     </DrawerContentScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#232B32'
+  },
+  option: {
+    color: '#24AC6E'
+  }
+});
