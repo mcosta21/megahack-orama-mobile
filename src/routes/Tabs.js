@@ -61,7 +61,7 @@ export default function Tabs() {
                     }}
                 />
                 <Screen 
-                    name="Loading3" 
+                    name="Loading" 
                     component={Loading}
                     options={{
                         tabBarIcon: ({color}) => {
