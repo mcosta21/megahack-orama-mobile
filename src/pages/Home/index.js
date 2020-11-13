@@ -10,6 +10,7 @@ import InputText from '../../components/InputText';
 import imageRendaFixa from '../../assets/renda-fixa-meu-precioso.jpg';
 import imageOfertasPublicas from '../../assets/ofertas-publicas-ironman.png';
 import imagePoupanca from '../../assets/poupanca-minion.png';
+import { RectButton } from 'react-native-gesture-handler';
 
 export default function Home({ navigation }) {
     const { navigate } = useNavigation();
@@ -89,6 +90,45 @@ export default function Home({ navigation }) {
                   
               </ScrollView>
               
+              <View style={styles.investmentBox}>
+                <Text style={styles.investmentTitle}>Meus investimentos</Text>
+
+                <RectButton style={styles.investmentCard}>
+                  <View style={styles.investmentCardBorder}>
+                    <View style={styles.investmentCardImage}>
+                      <Text style={styles.investmentCardText}>#1</Text>
+                    </View>
+                    <Text style={styles.investmentDescription}>Teste 1</Text>
+                  </View>
+                </RectButton>
+
+                <RectButton style={styles.investmentCard}>
+                  <View style={styles.investmentCardBorder}>
+                    <View style={styles.investmentCardImage}>
+                      <Text style={styles.investmentCardText}>#1</Text>
+                    </View>
+                    <Text style={styles.investmentDescription}>Teste 1</Text>
+                  </View>
+                </RectButton>
+
+                <RectButton style={styles.investmentCard}>
+                  <View style={styles.investmentCardBorder}>
+                    <View style={styles.investmentCardImage}>
+                      <Text style={styles.investmentCardText}>#1</Text>
+                    </View>
+                    <Text style={styles.investmentDescription}>Teste 1</Text>
+                  </View>
+                </RectButton>
+
+                <View style={styles.investmentBoxButton}>
+                  <RectButton style={styles.investmentButton}>
+                    <Feather onPress={handleNavigateToDrawer} name="align-right" size={26} color="#FFF"/>
+                  </RectButton>
+                </View>
+
+              </View>
+
+
               <TouchableOpacity
                 onPress={handleNavigateToDrawer}
               >
