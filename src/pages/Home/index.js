@@ -60,7 +60,8 @@ export default function Home({ navigation }) {
           </View>
           
           <SafeAreaView style={styles.content}>
-            <ScrollView>
+            <ScrollView
+              showsVerticalScrollIndicator={false}>
               <View style={styles.welcome}>
                 <Text style={styles.welcomeName}>Olá, Marcio</Text>
                 <Text style={styles.welcomePhrase}>Pronto para investir hoje?</Text>
@@ -103,6 +104,13 @@ export default function Home({ navigation }) {
               <InputText 
                 placeholder="Digite sua senha"
                 autoCorrect={false}
+                onChangeText={()=>{}}
+              />
+
+              <InputText 
+                placeholder="Digite sua senha"
+                autoCorrect={false}
+                onFocus={() => {}}
                 disabled
                 onChangeText={()=>{}}
               />

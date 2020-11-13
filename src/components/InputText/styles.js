@@ -11,6 +11,8 @@ export default StyleSheet.create({
         fontSize: 15,
         borderRadius: 6,
         padding: 20,
+        borderWidth: 2,
+        borderColor: 'transparent'
     },
     
 });
