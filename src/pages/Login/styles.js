@@ -7,51 +7,51 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        backgroundColor: '#0f1a07',
+        backgroundColor: '#182024',
 
     },
 
     input:{
-        backgroundColor: '#FFF',
+        backgroundColor: '#232B32',
         width: '80%',
         height: '10%',
         marginBottom:20,
         color:'#222',
         fontSize: 17,
-        borderRadius: 7,
+        borderRadius: 8,
         padding: 10,
     },
 
     btnEntrar:{
-        backgroundColor: '#98FB98',
+        backgroundColor: '#34F683',
         width: '80%',
         height: '9%',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 7,
+        borderRadius: 8,
         marginBottom:20,
         marginTop: 30
     },
 
     btnCadastrar:{
-        backgroundColor: '#1C1C1C',
+        backgroundColor: '#232B32',
         width: '80%',
         height: '9%',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 7,
+        borderRadius: 8,
 
     },
 
     textoEntrar:{
-        color: '#000000',
-        fontSize: 23,
+        color: '#182024',
+        fontSize: 22,
         fontFamily: 'Ubuntu_700Bold',
     },
 
     textoCadastrar:{
-        color: '#98FB98',
-        fontSize: 23,
+        color: '#24AC6E',
+        fontSize: 22,
         fontFamily: 'Ubuntu_700Bold',
     },
 
@@ -65,21 +65,26 @@ export default StyleSheet.create({
     },
 
     title: {
-        fontSize: 35,
-        color: '#98FB98',
+        fontSize: 36,
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        color: '#34F683',
         fontFamily: 'Ubuntu_700Bold'
     },
 
     cabecalho: {
-        fontSize: 19,
-        color: '#3CB371',
+        fontSize: 18,
+        fontStyle: 'normal',
+        fontWeight: '500',
+        color: '#24AC6E',
         paddingBottom: 10,
 
     },
 
     textoSenha:{
-        fontSize: 12,
-        color: '#3CB371', 
+        fontSize: 13,
+        fontStyle: 'normal',
+        color: '#24AC6E', 
     },
 
     campoEsqueci:{

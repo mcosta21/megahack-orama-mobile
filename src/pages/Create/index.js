@@ -1,11 +1,36 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
+import {  Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
+
 
 export default function Create() {
     return (
-      <View style={styles.container} >
-       <Text style={styles.ccadastro}>Cadastrar!</Text>
-     </View>
-  );
-}
+      <KeyboardAvoidingView style={styles.container}>
+        
+        <View style={styles.container}>
+
+          <View style={styles.header}>
+          <Text style={styles.title}>ÓRAMA</Text>
+          </View>
+
+          <View style={styles.campoCabecalho}>
+         <Text style={styles.cabecalho}>Email</Text>
+        </View>
+
+        <TextInput style={styles.input}                    
+          placeholder="Digite seu email"
+          autoCorrect={false}
+          onChangeText={()=>{}} />
+
+        <TouchableOpacity 
+          style={styles.btnRegistrar} >
+          <Text style={styles.textoRegistrar}>Registrar</Text>
+        </TouchableOpacity>
+
+        </View>     
+
+      </KeyboardAvoidingView>
+ 
+ );
+};

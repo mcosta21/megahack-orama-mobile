@@ -58,7 +58,7 @@ export default function Login( {navigation} ){
 
       </ImageBackground>     
 
-  </KeyboardAvoidingView>
+    </KeyboardAvoidingView>
 
   );
 };
