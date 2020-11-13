@@ -36,6 +36,7 @@ export default StyleSheet.create({
         color: '#34F683',
         fontFamily: 'Ubuntu_700Bold'
     },
-    
-
+    cards: {
+        marginTop: 40
+    }
 });

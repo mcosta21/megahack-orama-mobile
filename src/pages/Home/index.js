@@ -3,9 +3,7 @@ import { Feather } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import styles from './styles';
-
-import Loading from '../Loading';
-import Login from '../Login';
+import Card from '../../components/Card';
 import { StatusBar } from 'expo-status-bar';
 
 const Tab = createBottomTabNavigator();
@@ -27,10 +25,19 @@ export default function Home() {
                 <Text style={styles.welcomeName}>Olá, Marcio</Text>
                 <Text style={styles.welcomePhrase}>Pronto para investir hoje?</Text>
               </View>
-
-              <View>
-
-              </View>
+              
+              <ScrollView 
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                style={styles.cards}
+              >
+                  <Card />
+                  <Card />
+                  <Card />
+                  <Card />
+                  <Card />
+              </ScrollView>
+              
 
             </ScrollView>
           </SafeAreaView>
