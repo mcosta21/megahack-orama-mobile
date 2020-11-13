@@ -5,6 +5,7 @@ import styles from './styles';
 import Card from '../../components/Card';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
+import InputText from '../../components/InputText';
 
 import imageRendaFixa from '../../assets/renda-fixa-meu-precioso.jpg';
 import imageOfertasPublicas from '../../assets/ofertas-publicas-ironman.png';
@@ -37,7 +38,7 @@ export default function Home({ navigation }) {
       }
     ];
 
-    function handleNavigateToLogin(path) {
+    function handleNavigate(path) {
       navigate(path)
     }
 
@@ -79,7 +80,7 @@ export default function Home({ navigation }) {
                         secondLine={card.secondLine} 
                         category={card.category}
                         image={card.image}
-                        onPress={() => handleNavigateToLogin(card.path)}
+                        onPress={() => handleNavigate(card.path)}
                       />
                     )
                   })
@@ -92,6 +93,19 @@ export default function Home({ navigation }) {
               >
                 <Text>Press Here</Text>
               </TouchableOpacity>
+
+              <InputText 
+                placeholder="Digite sua senha"
+                autoCorrect={false}
+                onChangeText={()=>{}}
+              />
+
+              <InputText 
+                placeholder="Digite sua senha"
+                autoCorrect={false}
+                disabled
+                onChangeText={()=>{}}
+              />
 
             </ScrollView>
           </SafeAreaView>
