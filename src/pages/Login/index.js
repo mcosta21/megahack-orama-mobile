@@ -7,7 +7,7 @@ export default function Login( {navigation} ){
     const { navigate } = useNavigation();
 
     function handleNavigateToHome(){
-      navigate('Tabs');
+      navigate('Drawer');
     }
 
     return (
