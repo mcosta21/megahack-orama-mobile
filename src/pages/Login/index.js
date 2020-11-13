@@ -1,16 +1,9 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
+import {  Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
 
-import {  
-  Text, 
-  View, 
-  KeyboardAvoidingView, 
-  TextInput, 
-  TouchableOpacity 
-} from 'react-native';
-
-export default function Login(){
+export default function Login( {navigation} ){
     const { navigate } = useNavigation();
 
     function handleNavigateToHome(){
@@ -19,34 +12,51 @@ export default function Login(){
 
     return (
 
-      <KeyboardAvoidingView style={styles.containerLogin}>
-        <View style={styles.container}>
-        <TextInput style={styles.input}                    // Campo do email
-          placeholder="Email"
+      <KeyboardAvoidingView style={styles.container}>
+        
+        <ImageBackground source={require('../../assets/login-background.png')} style={styles.container}>
+
+        <View style={styles.header}>
+         <Text style={styles.title}>ÓRAMA</Text>
+        </View>
+
+        <View style={styles.campoCabecalho}>
+         <Text style={styles.cabecalho}>Email</Text>
+        </View>
+
+        <TextInput style={styles.input}                    
+          placeholder="Digite seu email"
           autoCorrect={false}
           onChangeText={()=>{}} />
 
+        <View style={styles.campoCabecalho}>
+         <Text style={styles.cabecalho} >Senha</Text>
+        </View>
+
         <TextInput 
-          style={styles.input}                    // Campo da senha
-          placeholder="Senha"
+          style={styles.input}                    
+          placeholder="Digite sua senha"
           autoCorrect={false}
-          onChangeText={()=>{}} 
-        />
+          onChangeText={()=>{}} />
+
+        <TouchableOpacity style={styles.campoEsqueci}
+          onPress={ () => navigation.navigate('Create')}>
+          <Text style={styles.textoSenha}>Esqueci minha senha</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity 
-          style={styles.btnAcessar} 
-          onPress={handleNavigateToHome}
-        >
-          <Text style={styles.textoAcessar}>Acessar</Text>
+          style={styles.btnEntrar} 
+          onPress={handleNavigateToHome}>
+          <Text style={styles.textoEntrar}>Entrar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
           style={styles.btnCadastrar}
-          onPress={ () => navigation.navigate('Cadastrar')}
-        >
-          <Text style={styles.textoCadastrar}>Criar conta</Text>
+          onPress={ () => navigation.navigate('Create')}>
+          <Text style={styles.textoCadastrar}>Cadastrar</Text>
         </TouchableOpacity>
-      </View>     
+
+      </ImageBackground>     
 
   </KeyboardAvoidingView>
 

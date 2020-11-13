@@ -1,50 +1,95 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    containerLogin: {
-        flex: 1,
-        backgroundColor: '#000000',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
 
     container:{
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width: '90%',
-        paddingBottom: 30,
+        width: '100%',
+        backgroundColor: '#0f1a07',
+
     },
 
     input:{
         backgroundColor: '#FFF',
-        width: '90%',
-        marginBottom:15,
+        width: '80%',
+        height: '10%',
+        marginBottom:20,
         color:'#222',
         fontSize: 17,
         borderRadius: 7,
         padding: 10,
     },
 
-    btnAcessar:{
-        backgroundColor: '#35AAFF',
-        width: '90%',
-        height: 45,
+    btnEntrar:{
+        backgroundColor: '#98FB98',
+        width: '80%',
+        height: '9%',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 7,
+        marginBottom:20,
+        marginTop: 30
     },
 
     btnCadastrar:{
-        marginTop: 10,
+        backgroundColor: '#1C1C1C',
+        width: '80%',
+        height: '9%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 7,
+
     },
 
-    textoAcessar:{
-        color: '#FFF',
-        fontSize: 18,
+    textoEntrar:{
+        color: '#000000',
+        fontSize: 23,
+        fontFamily: 'Ubuntu_700Bold',
     },
 
     textoCadastrar:{
-        color: '#FFF',
+        color: '#98FB98',
+        fontSize: 23,
+        fontFamily: 'Ubuntu_700Bold',
+    },
+
+    header: {
+        flexDirection: "row",
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 50,
+        marginBottom: 90
+
+    },
+
+    title: {
+        fontSize: 35,
+        color: '#98FB98',
+        fontFamily: 'Ubuntu_700Bold'
+    },
+
+    cabecalho: {
+        fontSize: 19,
+        color: '#3CB371',
+        paddingBottom: 10,
+
+    },
+
+    textoSenha:{
+        fontSize: 12,
+        color: '#3CB371', 
+    },
+
+    campoEsqueci:{
+        width: '80%',
+        alignItems: 'flex-end',
+    },
+
+    campoCabecalho:{
+        width: '80%',
     }
+
+    
 });

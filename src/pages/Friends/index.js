@@ -3,8 +3,11 @@ import { View, Text, TextInput, SafeAreaView } from 'react-native';
 
 export default function Friends() {
     return (
+
       <View style={styles.containerProcurar}>
+
         <SafeAreaView style={{backgroundColor: '#2f363c' }} />
+        
           <TextInput
             placeholder="Procurar"
             placeholderTextColor="#dddddd"
