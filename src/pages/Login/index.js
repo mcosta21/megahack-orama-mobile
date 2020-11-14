@@ -25,6 +25,14 @@ export default function Login(){
       navigate('Drawer');
     }
 
+    function handleNavigateToCreateUser(){
+      navigate('CreateUser');
+    }
+
+    function handleNavigateToRecover(){
+      navigate('Recover');
+    }
+
     function handleSubmitSignIn(){
       
       const formData = {
@@ -93,7 +101,7 @@ export default function Login(){
 
               <TouchableOpacity 
                 style={styles.boxForgotPassword}
-                onPress={ () => navigation.navigate('Recover')}
+                onPress={handleNavigateToRecover}
               >
                 <Text style={styles.textForgotPassword}>Esqueci minha senha</Text>
               </TouchableOpacity>
@@ -115,7 +123,7 @@ export default function Login(){
 
               <TouchableOpacity 
                 style={styles.buttonSignUp}
-                onPress={() => navigation.navigate('Create')}
+                onPress={handleNavigateToCreateUser}
               >
                 <Text style={styles.textSignUp}>Cadastrar</Text>
               </TouchableOpacity>

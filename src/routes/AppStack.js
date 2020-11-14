@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const { Navigator, Screen } = createStackNavigator();
 import Login from '../pages/Login';
-import CreateUser from '../pages/CreateUserUser';
+import CreateUser from '../pages/CreateUser';
 import Setting from '../pages/Setting';
 import Drawer from './Drawer';
 import Recover from '../pages/Recover';
@@ -15,7 +15,7 @@ export default function AppStack() {
         <NavigationContainer>
             <Navigator screenOptions={{ headerShown: false }} initialRouteName="Login">
 
-                <Screen name="Create" component={CreateUser} />           
+                <Screen name="CreateUser" component={CreateUser} />           
                 <Screen name="Login" component={Login} />       
                 <Screen name="Setting" component={Setting} />       
                 <Screen name="Drawer" component={Drawer} />    
