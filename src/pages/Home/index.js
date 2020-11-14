@@ -54,6 +54,7 @@ export default function Home({ navigation }) {
     return (
       <View style={styles.container}>
           <StatusBar style="light"/>
+          
           <View style={styles.header}>
             <Feather onPress={handleNavigateToDrawer} name="align-left" size={26} color="#FFF"/>
             <Text style={styles.title}>ÓRAMA</Text>

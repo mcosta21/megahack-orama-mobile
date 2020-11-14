@@ -11,6 +11,8 @@ export default function Loading() {
       <View style={styles.container}>
           <LinearGradient
             colors={['#34F683', '#24AC6E']}
+            start={{ x: 1, y: 1 }}
+            end={{ x: 0, y: 0 }}
             style={{flex: 1}}
           >
             <ImageBackground source={backgroundImage} style={styles.image}>
