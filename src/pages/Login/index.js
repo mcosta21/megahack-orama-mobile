@@ -73,7 +73,7 @@ export default function Login(){
         <SafeAreaView style={styles.container}>
           <ImageBackground source={require('../../assets/login-background.png')} style={styles.image}>
           
-            <SafeAreaView style={styles.content}>
+            <View style={styles.content}>
 
               <View style={styles.header}>
                 <Text style={styles.title}>ÓRAMA</Text>
@@ -113,12 +113,12 @@ export default function Login(){
                 end={{ x: 0, y: 0 }}
                 style={styles.buttonBackgroundSignIn}
               >
-                <RectButton
+                <TouchableOpacity
                   onPress={handleSubmitSignIn}
                   style={styles.buttonSignIn}
                 >
                   <Text style={styles.textSignIn}>Entrar</Text>
-                </RectButton>
+                </TouchableOpacity>
               </LinearGradient>
 
               <TouchableOpacity 
@@ -128,7 +128,7 @@ export default function Login(){
                 <Text style={styles.textSignUp}>Cadastrar</Text>
               </TouchableOpacity>
 
-            </SafeAreaView>
+            </View>
 
               <Modal
                 animationType="slide"
