@@ -5,6 +5,8 @@ import { useFonts, Ubuntu_400Regular, Ubuntu_500Medium, Ubuntu_700Bold } from '@
 import { Barlow_900Black } from '@expo-google-fonts/barlow';
 import AppStack from './src/routes/AppStack';
 
+import LoginProvider from './src/contexts/LoginContext';
+
 export default function App() {
   
   let [fontsLoaded] = useFonts({
@@ -18,9 +20,9 @@ export default function App() {
     return <AppLoading />
   }
   return (
-    <>
+    <LoginProvider>
       <AppStack />
       <StatusBar style="light"/>
-    </>
+    </LoginProvider>
   );
 }
