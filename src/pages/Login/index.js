@@ -7,14 +7,14 @@ import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { LoginContext } from '../../contexts/LoginContext';
-import api from '../../services/api';
+
 
 export default function Login(){
 
     const { navigate } = useNavigation();
     const context = useContext(LoginContext);
     const [modalVisible, setModalVisible] = useState(false);
-    const [errorMessages, setErrorMessages] = useState([]);
+
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -32,38 +32,18 @@ export default function Login(){
       navigate('Recover');
     }
 
-    function handleSubmitSignIn(){
-      
-      const formData = {
-          "email": email !== undefined ? email.toLowerCase() : undefined,
-          "password": password
-      };
+    async function handleSubmitSignIn(){
+      await context.signIn(email, password);
+      setEmail('');
+      setPassword('');
 
-      api.post('auth', formData).then((response) => {
-        
-        const { status, data } = response;
+      if(context.errorMessages[0] !== undefined) {
+        setModalVisible(true);
+      }
+      else {
+        handleNavigateToHome();
+      }
 
-        switch(status) {
-          case 201: 
-            const { id, firstName, lastName, token } = data;
-            api.defaults.headers.authorization = `Bearer ${token}`;
-            context.setLogin({id, name: `${firstName} ${lastName}`});
-            handleNavigateToHome();
-          break;
-          case 203: 
-            if(Array.isArray(data)){
-              setErrorMessages(data);
-            }
-            else {
-              setErrorMessages([data])
-            }
-            setModalVisible(true);
-          break;
-        }
-      
-      });
-      
-      
     }
 
     return (
@@ -88,6 +68,7 @@ export default function Login(){
                   name="email"
                   autoCorrect={false}
                   autoCapitalize="none"
+                  value={email}
                   onChangeText={value => setEmail(value)}
                 />
 
@@ -100,6 +81,7 @@ export default function Login(){
                   autoCorrect={false}
                   autoCapitalize="none"
                   secureTextEntry={true}
+                  value={password}
                   onChangeText={value => setPassword(value)}
                 />
 
@@ -147,7 +129,7 @@ export default function Login(){
                         </View>  
 
                         {
-                          errorMessages.map((error, index) => {
+                          context.errorMessages.map((error, index) => {
                             return (
                               <View key={index} style={styles.message}>
                                 <Text style={styles.messageIndex}>#{index+1}</Text>

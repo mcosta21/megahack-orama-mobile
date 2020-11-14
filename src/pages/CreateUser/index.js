@@ -1,17 +1,39 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import {  Text, View, Keyboard, KeyboardAvoidingView, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { RectButton } from 'react-native-gesture-handler';
+import { LoginContext } from '../../contexts/LoginContext';
+
 
 export default function CreateUser(){
+  const context = useContext(LoginContext);
+
   const { navigate } = useNavigation();
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
 
   function handleNavigateToHome(){
     navigate('Drawer');
+  }
+
+  async function handleSubmitSignUp(){
+    await context.signUp(name, lastName, email, password, passwordConfirm);
+
+    setPassword('');
+    setPasswordConfirm('');
+    
+    if(context.errorMessages[0] !== undefined) {
+      setModalVisible(true);
+    }
+    else {
+      handleNavigateToHome();
+    }
   }
 
     return (
@@ -34,7 +56,18 @@ export default function CreateUser(){
             <InputText 
               placeholder="Digite seu nome"
               autoCorrect={false}
-              onChangeText={()=>{}}
+              value={name}
+              onChangeText={value => setName(value)}
+            />
+
+            <View style={styles.boxText}>
+              <Text style={styles.text}>Sobrenome</Text>
+            </View>
+            <InputText 
+              placeholder="Digite seu sobrenome"
+              autoCorrect={false}
+              value={lastName}
+              onChangeText={value => setLastName(value)}
             />
 
             <View style={styles.boxText}>
@@ -43,7 +76,9 @@ export default function CreateUser(){
             <InputText 
               placeholder="Digite seu e-mail"
               autoCorrect={false}
-              onChangeText={()=>{}}
+              autoCapitalize='none'
+              value={email}
+              onChangeText={value => setEmail(value)}
             />
 
             <View style={styles.boxText}>
@@ -52,12 +87,18 @@ export default function CreateUser(){
             <InputText 
               placeholder="Digite sua senha"
               autoCorrect={false}
-              onChangeText={()=>{}}
+              autoCapitalize="none"
+              secureTextEntry={true}
+              value={password}
+              onChangeText={value => setPassword(value)}
             />
             <InputText 
               placeholder="Confirme sua senha"
               autoCorrect={false}
-              onChangeText={()=>{}}
+              autoCapitalize="none"
+              secureTextEntry={true}
+              value={passwordConfirm}
+              onChangeText={value => setPasswordConfirm(value)}
             />
 
             <LinearGradient
@@ -66,12 +107,12 @@ export default function CreateUser(){
               end={{ x: 0, y: 0 }}
               style={styles.buttonBackgroundSignUp}
               >
-              <RectButton
-                onPress={handleNavigateToHome}
+              <TouchableOpacity
+                onPress={handleSubmitSignUp}
                 style={styles.buttonSignUp}
                 >
                 <Text style={styles.textSignUp}>Registrar</Text>
-              </RectButton>
+              </TouchableOpacity>
             </LinearGradient>
 
             <TouchableOpacity 
