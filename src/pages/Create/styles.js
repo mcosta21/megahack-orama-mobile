@@ -6,12 +6,12 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         backgroundColor: '#182024',
-    },
+     },
     content: {
         flex: 1,
         paddingHorizontal: 24,
         alignItems: 'center',
-    },
+     },
     header: {
         flexDirection: "row",
         justifyContent: 'center',
@@ -26,6 +26,7 @@ export default StyleSheet.create({
         color: '#34F683',
         fontFamily: 'Ubuntu_700Bold'
     },
+
     boxText: {
         paddingBottom: 10,
         width: '100%',
@@ -37,7 +38,7 @@ export default StyleSheet.create({
         color: '#24AC6E'
     },
     buttonSignUp:{
-        backgroundColor: '#232B32',
+        backgroundColor: '#24AC6E',
         width: '100%',
         height: 60,
         alignItems: 'center',
@@ -45,7 +46,7 @@ export default StyleSheet.create({
         borderRadius: 8,
     },
     textSignUp:{
-        color: '#24AC6E',
+        color: '#182024',
         fontSize: 22,
         fontFamily: 'Ubuntu_700Bold',
     },
@@ -56,14 +57,23 @@ export default StyleSheet.create({
         borderRadius: 8,
         marginBottom:20,
     },
-    boxAcc: {
+    boxAlreadyHaveAcc: {
         width: '100%',
         alignItems: 'center',
     },
-    textAcc: {
+    textAlreadyHaveAcc: {
         fontSize: 13,
         color: '#24AC6E',
         fontFamily: 'Ubuntu_500Medium',
     },
+    SignUp:{
+        width: '100%',
+        paddingBottom: 20
+    },
+    SignUpText:{
+        fontSize: 22,
+        color: '#FFF',
+        fontFamily: 'Ubuntu_500Medium',
+    }
 
 });

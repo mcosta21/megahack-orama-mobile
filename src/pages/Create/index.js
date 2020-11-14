@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import {  Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
+import {  Text, View, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -22,6 +22,10 @@ export default function Create( {navigation} ){
 
           <View style={styles.header}>
             <Text style={styles.title}>ÓRAMA</Text>
+          </View>
+
+          <View style={styles.SignUp}>
+            <Text style={styles.SignUpText}>Cadastrar</Text>
           </View>
 
           <View style={styles.boxText}>
@@ -66,15 +70,15 @@ export default function Create( {navigation} ){
               onPress={handleNavigateToHome}
               style={styles.buttonSignUp}
               >
-              <Text style={styles.textSignUp}>Cadastrar</Text>
+              <Text style={styles.textSignUp}>Registrar</Text>
             </RectButton>
           </LinearGradient>
 
           <TouchableOpacity 
-              style={styles.boxAcc}
+              style={styles.boxAlreadyHaveAcc}
               onPress={handleNavigateToHome}
             >
-              <Text style={styles.textAcc}>Ja tenho conta!</Text>
+              <Text style={styles.textAlreadyHaveAcc}>Ja tenho conta!</Text>
             </TouchableOpacity>
 
         </SafeAreaView>     
