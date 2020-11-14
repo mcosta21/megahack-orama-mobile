@@ -14,11 +14,33 @@ export default StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingBottom: 20
     },
     title: {
         fontSize: 22,
         color: '#FFF',
         fontFamily: 'Ubuntu_700Bold'
     },
+    content: {
+        marginTop: 20,
+        flex: 1, 
+    },
+
+    welcomeName: {
+        marginTop: 20,
+        fontSize: 22,
+        color: '#FFF',
+        fontFamily: 'Ubuntu_700Bold'
+    },
+    welcomePhrase: {
+        marginTop: 15,
+        fontSize: 16,
+        color: '#34F683',
+        fontFamily: 'Ubuntu_700Bold'
+    },
+
+    posts: {
+        marginTop: 10,
+        marginBottom: 30
+    }
+
 });

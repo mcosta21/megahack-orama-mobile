@@ -10,7 +10,7 @@ export default function InputText({ disabled, ...rest}) {
           editable={disabled === true ? false : true}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
-          placeholderTextColor="#FFF"
+          placeholderTextColor="#6C7884"
           style={focus ? {...styles.container, borderColor: '#34F683'} : styles.container} />
   );
 }

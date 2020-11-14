@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView, ScrollView, } from 'react-native';
 import styles from './styles';
 import { Feather } from '@expo/vector-icons';
+import Post from '../../components/Post';
 
 export default function Feed() {
     return (
@@ -9,8 +10,27 @@ export default function Feed() {
         <View style={styles.header}>
           <Feather name="align-left" size={26} color="#FFF"/>
           <Text style={styles.title}>ÓRAMA</Text>
-          <Feather name="settings" size={23} color="#FFF"/>
+          <Feather name="refresh-cw" size={22} color="#FFF"/>
         </View>
+
+        <SafeAreaView style={styles.content}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}>
+              
+              <View style={styles.welcome}>
+                <Text style={styles.welcomeName}>Feed</Text>
+                <Text style={styles.welcomePhrase}>Veja o que seus amigos estão investindo!</Text>
+              </View>
+
+              <View style={styles.posts}>
+                <Post />
+                <Post />
+                <Post />
+              </View>
+
+
+            </ScrollView>
+        </SafeAreaView>
       </View>
   );
 }

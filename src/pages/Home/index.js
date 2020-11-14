@@ -1,11 +1,9 @@
 import React from 'react';
-import { Feather } from '@expo/vector-icons';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
+import { Feather, AntDesign } from '@expo/vector-icons';
+import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import styles from './styles';
 import Card from '../../components/Card';
-import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
-import InputText from '../../components/InputText';
 
 import imageRendaFixa from '../../assets/renda-fixa-meu-precioso.jpg';
 import imageOfertasPublicas from '../../assets/ofertas-publicas-ironman.png';
@@ -53,7 +51,6 @@ export default function Home({ navigation }) {
 
     return (
       <View style={styles.container}>
-          <StatusBar style="light"/>
           
           <View style={styles.header}>
             <Feather onPress={handleNavigateToDrawer} name="align-left" size={26} color="#FFF"/>
@@ -64,6 +61,7 @@ export default function Home({ navigation }) {
           <SafeAreaView style={styles.content}>
             <ScrollView
               showsVerticalScrollIndicator={false}>
+              
               <View style={styles.welcome}>
                 <Text style={styles.welcomeName}>Olá, Marcio</Text>
                 <Text style={styles.welcomePhrase}>Pronto para investir hoje?</Text>
@@ -122,40 +120,43 @@ export default function Home({ navigation }) {
                 </RectButton>
 
                 <View style={styles.investmentBoxButton}>
-                  <RectButton style={styles.investmentButton}>
-                    <Feather onPress={handleNavigateToDrawer} name="align-right" size={26} color="#FFF"/>
+                  <RectButton onPress={() => {}} style={styles.investmentButton}>
+                    <AntDesign style={styles.investmentButtonIcon} name="arrowright" size={24} color="#24AC6E"/>
                   </RectButton>
                 </View>
 
               </View>
 
+              <View style={styles.welcome}>
+                <Text style={styles.welcomeName}>Ranking Órama</Text>
+                <Text style={styles.welcomePhrase}>Se torne o maior investidor do Brasil</Text>
+              </View>
 
-              <TouchableOpacity
-                onPress={handleNavigateToDrawer}
-              >
-                <Text>Press Here</Text>
-              </TouchableOpacity>
+              <View style={styles.rankingBox}>
+                
+                <RectButton style={styles.rankingCard}>
+                  <View style={styles.rankingCardImage}>
+                  </View>
+                  <View style={styles.rankingCardValues}>
+                    <Text style={styles.rankingCardPosition}>#1025</Text>
+                    <Text style={styles.rankingCardTitle}>Maior investidor Órama</Text>
+                  </View>
+                </RectButton>
 
-              <InputText 
-                placeholder="Digite sua senha"
-                autoCorrect={false}
-                onChangeText={()=>{}}
-              />
+                <RectButton style={styles.rankingCard}>
+                  <View style={styles.rankingCardImage}>
+                  </View>
+                  <View style={styles.rankingCardValues}>
+                    <Text style={styles.rankingCardPosition}>#1025</Text>
+                    <Text style={styles.rankingCardTitle}>Maior investidor do bairro</Text>
+                  </View>
+                </RectButton>
 
-              <InputText 
-                placeholder="Digite sua senha"
-                autoCorrect={false}
-                onChangeText={()=>{}}
-              />
-
-              <InputText 
-                placeholder="Digite sua senha"
-                autoCorrect={false}
-                onFocus={() => {}}
-                disabled
-                onChangeText={()=>{}}
-              />
-
+                <RectButton style={styles.buttonSeeAll}>
+                  <Text style={styles.buttonSeeAllText}>Ver tudo</Text>
+                  <AntDesign style={styles.investmentButtonIcon} name="arrowright" size={22} color="#24AC6E"/>
+                </RectButton>
+              </View>
             </ScrollView>
           </SafeAreaView>
 
