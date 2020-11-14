@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import styles from './styles';
-import { Keyboard, TouchableWithoutFeedback, Platform, Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground, Modal, ScrollView } from 'react-native';
+import { Keyboard, TouchableWithoutFeedback, Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground, Modal, ScrollView } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -74,7 +74,6 @@ export default function Login(){
           
             <KeyboardAvoidingView 
             style={styles.content} 
-            behavior={Platform.OS === 'ios'? 'padding' : 'padding'}
             >
                 <View style={styles.header}>
                   <Text style={styles.title}>ÓRAMA</Text>
