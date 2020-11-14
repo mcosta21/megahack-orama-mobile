@@ -3,54 +3,81 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import {  Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
 import InputText from '../../components/InputText';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
+import { RectButton } from 'react-native-gesture-handler';
 
-export default function Create() {
+export default function Create( {navigation} ){
+  const { navigate } = useNavigation();
+
+  function handleNavigateToHome(){
+    navigate('Drawer');
+  }
+
     return (
+
       <KeyboardAvoidingView style={styles.container}>
         
-        <View style={styles.container}>
+        <SafeAreaView style={styles.content}>
 
           <View style={styles.header}>
-          <Text style={styles.title}>ÓRAMA</Text>
+            <Text style={styles.title}>ÓRAMA</Text>
           </View>
 
-          <View style={styles.campoCabecalho}>
-         <Text style={styles.cabecalho}>Nome</Text>
-        </View>
+          <View style={styles.boxText}>
+            <Text style={styles.text}>Nome</Text>
+          </View>
+          <InputText 
+            placeholder="Digite seu nome"
+            autoCorrect={false}
+            onChangeText={()=>{}}
+          />
 
-        <InputText 
-          placeholder="Digite seu nome"
-          autoCorrect={false}
-          onChangeText={()=>{}}
-        />
+          <View style={styles.boxText}>
+            <Text style={styles.text}>E-mail</Text>
+          </View>
+          <InputText 
+            placeholder="Digite seu e-mail"
+            autoCorrect={false}
+            onChangeText={()=>{}}
+          />
 
-        <View style={styles.campoCabecalho}>
-         <Text style={styles.cabecalho}>E-mail</Text>
-        </View>
+          <View style={styles.boxText}>
+            <Text style={styles.text}>Senha</Text>
+          </View>
+          <InputText 
+            placeholder="Digite sua senha"
+            autoCorrect={false}
+            onChangeText={()=>{}}
+          />
+          <InputText 
+            placeholder="Confirme sua senha"
+            autoCorrect={false}
+            onChangeText={()=>{}}
+          />
 
-        <InputText 
-          placeholder="Digite seu e-mail"
-          autoCorrect={false}
-          onChangeText={()=>{}}
-        />
+          <LinearGradient
+            colors={['#24AC6E', '#34F683']}
+            start={{ x: 1, y: 1 }}
+            end={{ x: 0, y: 0 }}
+            style={styles.buttonBackgroundSignUp}
+            >
+            <RectButton
+              onPress={handleNavigateToHome}
+              style={styles.buttonSignUp}
+              >
+              <Text style={styles.textSignUp}>Cadastrar</Text>
+            </RectButton>
+          </LinearGradient>
 
-        <View style={styles.campoCabecalho}>
-         <Text style={styles.cabecalho}>Senha</Text>
-        </View>
+          <TouchableOpacity 
+              style={styles.boxAcc}
+              onPress={handleNavigateToHome}
+            >
+              <Text style={styles.textAcc}>Ja tenho conta!</Text>
+            </TouchableOpacity>
 
-        <InputText 
-          placeholder="Digite sua senha"
-          placeholder="Confirme sua senha"
-          autoCorrect={false}
-          onChangeText={()=>{}}
-        />
-
-        <TouchableOpacity 
-          style={styles.btnRegistrar} >
-          <Text style={styles.textoRegistrar}>Registrar</Text>
-        </TouchableOpacity>
-
-        </View>     
+        </SafeAreaView>     
 
       </KeyboardAvoidingView>
  
