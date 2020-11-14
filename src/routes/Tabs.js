@@ -8,6 +8,7 @@ const { Navigator, Screen } = createBottomTabNavigator();
 import Loading from '../pages/Loading';
 import Home from '../pages/Home';
 import Feed from '../pages/Feed';
+import Friends from '../pages/Friends';
 
 export default function Tabs() {
     return (
@@ -70,8 +71,8 @@ export default function Tabs() {
                     }}
                 />
                 <Screen 
-                    name="Loading1" 
-                    component={Loading}
+                    name="Friends" 
+                    component={Friends}
                     options={{
                         tabBarIcon: ({color}) => {
                             return (<FontAwesome5 name="user" size={23} color={color}/>);

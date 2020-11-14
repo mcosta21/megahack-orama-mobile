@@ -33,6 +33,7 @@ export default StyleSheet.create({
     },
     configuracaoPhrase: {
         marginTop: 15,
+        marginBottom: 35,
         fontSize: 16,
         color: '#34F683',
         fontFamily: 'Ubuntu_700Bold'
