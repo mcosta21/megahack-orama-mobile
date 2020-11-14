@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { FontAwesome5 } from '@expo/vector-icons';
 import styles from './styles';
-import {  Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground } from 'react-native';
+import {  Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground, Modal, ScrollView } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -13,9 +14,11 @@ export default function Login( {navigation} ){
 
     const { navigate } = useNavigation();
     const context = useContext(LoginContext);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [errorMessages, setErrorMessages] = useState([]);
 
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState('mcosta@orama.com');
+    const [password, setPassword] = useState('123456');
 
 
     function handleNavigateToHome(){
@@ -23,18 +26,37 @@ export default function Login( {navigation} ){
     }
 
     function handleSubmitSignIn(){
-
+      
       const formData = {
-          "email": email !== undefined && email.toLowerCase(),
+          "email": email !== undefined ? email.toLowerCase() : undefined,
           "password": password
       };
 
       api.post('auth', formData).then((response) => {
-        console.log(response.data);
-      });
+        
+        const { status, data } = response;
 
-      //context.setLogin({id: 'nome', name: 'sobrenome'})
-      //handleNavigateToHome();
+        switch(status) {
+          case 201: 
+            const { id, firstName, lastName, token } = data;
+            api.defaults.headers.authorization = `Bearer ${token}`;
+            context.setLogin({id, name: `${firstName} ${lastName}`});
+            handleNavigateToHome();
+          break;
+          case 203: 
+            if(Array.isArray(data)){
+              setErrorMessages(data);
+            }
+            else {
+              setErrorMessages([data])
+            }
+            setModalVisible(true);
+          break;
+        }
+      
+      });
+      
+      
     }
 
     return (
@@ -99,6 +121,42 @@ export default function Login( {navigation} ){
 
           </SafeAreaView>
 
+            <Modal
+              animationType="slide"
+              visible={modalVisible}
+              transparent={true}
+              onRequestClose={() => { setModalVisible(false); }}
+            >
+                <View style={styles.modal}>
+                  <View style={styles.modalContent}>
+                    <ScrollView style={styles.modalScroll}>
+                      
+                      <View style={styles.modalBorderTitle}>
+                        <FontAwesome5 style={styles.modalIcon} name="sad-cry" size={24} color="#34F683"/>
+                        <Text style={styles.modalTitle}>Desculpe, mas...</Text>
+                      </View>  
+
+                      {
+                        errorMessages.map((error, index) => {
+                          return (
+                            <View key={index} style={styles.message}>
+                              <Text style={styles.messageIndex}>#{index+1}</Text>
+                              <Text style={styles.messageText}>{error.message}</Text>
+                            </View>
+                          )
+                        })
+                      }
+
+                    </ScrollView>
+                    <RectButton
+                      style={styles.buttonCloseModal}
+                      onPress={() => setModalVisible(false)}
+                    >
+                      <Text style={styles.textCloseModal}>Tudo bem!</Text>
+                    </RectButton>
+                  </View>
+              </View>
+            </Modal>
         </ImageBackground>     
     </KeyboardAvoidingView>
 

@@ -5,7 +5,7 @@ import styles from './styles';
 import Card from '../../components/Card';
 import { useNavigation } from '@react-navigation/native';
 
-import imageRendaFixa from '../../assets/renda-fixa-meu-precioso.jpg';
+import imageRendaFixa from '../../assets/renda-fixa-meu-precioso.png';
 import imageOfertasPublicas from '../../assets/ofertas-publicas-ironman.png';
 import imagePoupanca from '../../assets/poupanca-minion.png';
 import { RectButton } from 'react-native-gesture-handler';

@@ -1,15 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, ScrollView, } from 'react-native';
 import styles from './styles';
 import { AntDesign, Feather } from '@expo/vector-icons';
 import Post from '../../components/Post';
 import { useNavigation } from '@react-navigation/native';
+import api from '../../services/api';
 
 export default function Feed() {
     const { navigate } = useNavigation();
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+      api.get('posts').then(response => {
+        if(response.data){
+          let postsByUser = [];
+          response.data.map(post => {
+            return (
+              post.series.map((item, index) => {
+                const data = {
+                  post_id: index + 1,
+                  user_id: post.user.id,
+                  username: `${post.user.firstName} ${post.user.lastName}`,
+                  ...item.serie
+                }
+                postsByUser.push(data);
+              })
+            );
+          });
+          console.log(postsByUser)
+          setPosts(postsByUser);
+        }
+      });
+    }, []);
+
+    function getPostsByUser(){
+      console.log('teste')
+
+      
+    }
 
     function handleNavigateToHome(){
       navigate('Home');
+    }
+
+    function handleClickUpdatePosts(){
+      console.log('post')
+      getPostsByUser();
     }
 
     return (
@@ -17,7 +53,7 @@ export default function Feed() {
         <View style={styles.header}>
           <AntDesign onPress={() => handleNavigateToHome()} name="arrowleft" size={24} color="#FFF"/>
           <Text style={styles.title}>ÓRAMA</Text>
-          <Feather name="refresh-cw" size={22} color="#FFF"/>
+          <Feather onPress={() => handleClickUpdatePosts()} name="refresh-cw" size={22} color="#FFF"/>
         </View>
 
         <SafeAreaView style={styles.content}>
@@ -29,12 +65,27 @@ export default function Feed() {
                 <Text style={styles.welcomePhrase}>Veja o que seus amigos estão investindo!</Text>
               </View>
 
-              <View style={styles.posts}>
-                <Post />
-                <Post />
-                <Post />
-              </View>
-
+              {
+                posts === [] 
+                ?
+                  <View>
+                    <Text>Nenhum post encontrado.</Text>
+                  </View>
+                :
+                  <View style={styles.posts}>
+                    {
+                      posts.map((post, index) => {
+                        return <Post 
+                                  key={index}
+                                  category={post.category} 
+                                  title={post.title} 
+                                  description={post.description} 
+                                  username={post.username}
+                                />
+                      })
+                    }
+                  </View>
+              }
 
             </ScrollView>
         </SafeAreaView>

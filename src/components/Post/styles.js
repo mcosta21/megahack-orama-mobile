@@ -20,16 +20,19 @@ export default StyleSheet.create({
     },
     postTag: {
         fontSize: 12,
+        textTransform: 'uppercase',
         color: '#24AC6E',
         fontFamily: 'Ubuntu_700Bold'
     },
     postTitle: {
+        textTransform: 'capitalize',
         marginTop: 10,
         fontSize: 20,
         color: '#FFF',
         fontFamily: 'Ubuntu_700Bold'
     },
     postDescription: {
+        height: 25,
         marginTop: 10,
         fontSize: 12,
         color: '#6C7884',
@@ -40,16 +43,23 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         marginTop: 10,
     },  
-    postImageIcons: {
-        flexDirection: 'row'
+    postInfoUser: {
+        flexDirection: 'row',
+        alignItems: 'center'
     },  
-    postImageIcon: {
+    postImageUser: {
         marginRight: 5,
         width: 30,
         height: 30,
         borderWidth: 1,
         borderColor: '#34F683',
-        borderRadius: 5
+        borderRadius: 5,
+        marginRight: 10
+    },
+    postNameUser: {
+        color: '#FFF',
+        fontFamily: 'Ubuntu_500Medium',
+        fontSize: 13
     },
     postOptionBottomButton: {
         backgroundColor: '#34F683',
