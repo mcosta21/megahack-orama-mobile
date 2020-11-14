@@ -65,6 +65,7 @@ export default StyleSheet.create({
         fontSize: 13,
         color: '#24AC6E',
         fontFamily: 'Ubuntu_500Medium',
+        marginBottom: 10,
     },
     SignUp:{
         width: '100%',
