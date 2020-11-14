@@ -41,6 +41,21 @@ export default StyleSheet.create({
     posts: {
         marginTop: 10,
         marginBottom: 30
+    },
+
+    withoutPost: {
+        width: '100%',
+        alignItems: 'center',
+        marginTop: 150,
+        paddingHorizontal: 50,
+    },
+    withouPostText: {
+        marginTop: 20,
+        color: '#6C7884',
+        fontSize: 17,
+        lineHeight: 30,
+        textAlign: 'center',
+        fontFamily: 'Ubuntu_500Medium'
     }
 
 });

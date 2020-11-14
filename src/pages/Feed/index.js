@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, ScrollView, } from 'react-native';
 import styles from './styles';
-import { AntDesign, Feather } from '@expo/vector-icons';
+import { AntDesign, Feather, FontAwesome5 } from '@expo/vector-icons';
 import Post from '../../components/Post';
 import { useNavigation } from '@react-navigation/native';
 import api from '../../services/api';
@@ -11,8 +11,12 @@ export default function Feed() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
+      getPostsByUser();
+    }, []);
+
+    function getPostsByUser(){
       api.get('posts').then(response => {
-        if(response.data){
+        if(response.data.length !== 0){
           let postsByUser = [];
           response.data.map(post => {
             return (
@@ -27,16 +31,9 @@ export default function Feed() {
               })
             );
           });
-          console.log(postsByUser)
           setPosts(postsByUser);
         }
       });
-    }, []);
-
-    function getPostsByUser(){
-      console.log('teste')
-
-      
     }
 
     function handleNavigateToHome(){
@@ -66,10 +63,11 @@ export default function Feed() {
               </View>
 
               {
-                posts === [] 
+                posts.length === 0 
                 ?
-                  <View>
-                    <Text>Nenhum post encontrado.</Text>
+                  <View style={styles.withoutPost}>
+                    <FontAwesome5 name="sad-tear" size={70} color="#24AC6E" />
+                    <Text style={styles.withouPostText}>Desculpe, mas seus amigos ainda não investiram.</Text>
                   </View>
                 :
                   <View style={styles.posts}>
