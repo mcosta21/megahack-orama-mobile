@@ -7,6 +7,7 @@ import Login from '../pages/Login';
 import Create from '../pages/Create';
 import Setting from '../pages/Setting';
 import Drawer from './Drawer';
+import Recover from '../pages/Recover';
 
 
 export default function AppStack() {
@@ -17,7 +18,8 @@ export default function AppStack() {
                 <Screen name="Create" component={Create} />           
                 <Screen name="Login" component={Login} />       
                 <Screen name="Setting" component={Setting} />       
-                <Screen name="Drawer" component={Drawer} />           
+                <Screen name="Drawer" component={Drawer} />    
+                <Screen name="Recover" component={Recover} />          
 
             </Navigator>
         </NavigationContainer>

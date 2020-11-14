@@ -5,7 +5,7 @@ export default StyleSheet.create({
     
     container: {
         flex: 1,
-        paddingHorizontal: 24,
+        paddingHorizontal: 26,
         backgroundColor: '#182024',
         paddingTop: Constants.statusBarHeight + 20,
         flexDirection: "column"
@@ -22,7 +22,8 @@ export default StyleSheet.create({
     title: {
         fontSize: 22,
         color: '#FFF',
-        fontFamily: 'Ubuntu_700Bold'
+        fontFamily: 'Ubuntu_700Bold',
+
     },
     boxText: {
         paddingBottom: 10,

@@ -45,7 +45,7 @@ export default function Login( {navigation} ){
 
             <TouchableOpacity 
               style={styles.boxForgotPassword}
-              onPress={ () => navigation.navigate('Create')}
+              onPress={ () => navigation.navigate('Recover')}
             >
               <Text style={styles.textForgotPassword}>Esqueci minha senha</Text>
             </TouchableOpacity>
