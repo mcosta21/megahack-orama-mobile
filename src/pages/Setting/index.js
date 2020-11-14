@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import {  Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native';
 import InputText from '../../components/InputText';
 import { AntDesign, Feather } from '@expo/vector-icons';
 
@@ -9,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { RectButton } from 'react-native-gesture-handler';
 
-export default function Setting( {navigation} ) {
+export default function Setting() {
     const { navigate } = useNavigation();
 
     function handleNavigateToHome(){
@@ -19,7 +19,9 @@ export default function Setting( {navigation} ) {
 
     return (
 
-      <View style={styles.container}>
+      <KeyboardAvoidingView 
+        style={styles.container}
+      >
         
         <View style={styles.header}>
           <AntDesign onPress={() => handleNavigateToHome()} name="arrowleft" size={24} color="#FFF"/>
@@ -101,6 +103,6 @@ export default function Setting( {navigation} ) {
               </ScrollView>
           </SafeAreaView>
 
-     </View>
+     </KeyboardAvoidingView>
   );
 }
