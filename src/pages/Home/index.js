@@ -9,6 +9,7 @@ import imageRendaFixa from '../../assets/renda-fixa-meu-precioso.png';
 import imageOfertasPublicas from '../../assets/ofertas-publicas-ironman.png';
 import imagePoupanca from '../../assets/poupanca-minion.png';
 import { RectButton } from 'react-native-gesture-handler';
+import TitleWelcome from '../../components/TitleWelcome';
 
 export default function Home({ navigation }) {
     const { navigate } = useNavigation();
@@ -62,10 +63,7 @@ export default function Home({ navigation }) {
             <ScrollView
               showsVerticalScrollIndicator={false}>
               
-              <View style={styles.welcome}>
-                <Text style={styles.welcomeName}>Olá, Marcio</Text>
-                <Text style={styles.welcomePhrase}>Pronto para investir hoje?</Text>
-              </View>
+              <TitleWelcome title="Olá, Mundo" description="Pronto para investir hoje?" />
               
               <ScrollView 
                 horizontal={true}
@@ -126,11 +124,8 @@ export default function Home({ navigation }) {
                 </View>
 
               </View>
-
-              <View style={styles.welcome}>
-                <Text style={styles.welcomeName}>Ranking Órama</Text>
-                <Text style={styles.welcomePhrase}>Se torne o maior investidor do Brasil</Text>
-              </View>
+              
+              <TitleWelcome title="Ranking Órama" description="Se torne o maior investidor do Brasil" />
 
               <View style={styles.rankingBox}>
                 

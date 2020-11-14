@@ -5,7 +5,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
-import Loading from '../pages/Loading';
 import Home from '../pages/Home';
 import Feed from '../pages/Feed';
 import Friends from '../pages/Friends';
