@@ -2,11 +2,10 @@ import React, { useContext, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import styles from './styles';
-import {  Keyboard, TouchableWithoutFeedback, Platform, Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground, Modal, ScrollView } from 'react-native';
+import { Keyboard, TouchableWithoutFeedback, Platform, Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground, Modal, ScrollView } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { RectButton } from 'react-native-gesture-handler';
 import { LoginContext } from '../../contexts/LoginContext';
 import api from '../../services/api';
 
@@ -17,12 +16,20 @@ export default function Login(){
     const [modalVisible, setModalVisible] = useState(false);
     const [errorMessages, setErrorMessages] = useState([]);
 
-    const [email, setEmail] = useState('admin@orama.com');
-    const [password, setPassword] = useState('123123');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
 
     function handleNavigateToHome(){
       navigate('Drawer');
+    }
+
+    function handleNavigateToCreateUser(){
+      navigate('CreateUser');
+    }
+
+    function handleNavigateToRecover(){
+      navigate('Recover');
     }
 
     function handleSubmitSignIn(){
@@ -65,63 +72,65 @@ export default function Login(){
         <SafeAreaView style={styles.container}>
           <ImageBackground source={require('../../assets/login-background.png')} style={styles.image}>
           
-            <View style={styles.content}>
+            <KeyboardAvoidingView 
+            style={styles.content} 
+            behavior={Platform.OS === 'ios'? 'padding' : 'padding'}
+            >
+                <View style={styles.header}>
+                  <Text style={styles.title}>ÓRAMA</Text>
+                </View>
 
-              <View style={styles.header}>
-                <Text style={styles.title}>ÓRAMA</Text>
-              </View>
+                <View style={styles.boxText}>
+                  <Text style={styles.text}>E-mail</Text>
+                </View>
+                <InputText 
+                  placeholder="Digite seu e-mail"
+                  name="email"
+                  autoCorrect={false}
+                  autoCapitalize="none"
+                  onChangeText={value => setEmail(value)}
+                />
 
-              <View style={styles.boxText}>
-                <Text style={styles.text}>E-mail</Text>
-              </View>
-              <InputText 
-                placeholder="Digite seu e-mail"
-                name="email"
-                autoCorrect={false}
-                onChangeText={value => setEmail(value)}
-              />
+                <View style={styles.boxText}>
+                  <Text style={styles.text}>Senha</Text>
+                </View>
+                <InputText 
+                  placeholder="Digite sua senha"
+                  name="password"
+                  autoCorrect={false}
+                  autoCapitalize="none"
+                  secureTextEntry={true}
+                  onChangeText={value => setPassword(value)}
+                />
 
-              <View style={styles.boxText}>
-                <Text style={styles.text}>Senha</Text>
-              </View>
-              <InputText 
-                placeholder="Digite sua senha"
-                name="password"
-                autoCorrect={false}
-                onChangeText={value => setPassword(value)}
-              />
-
-              <TouchableOpacity 
-                style={styles.boxForgotPassword}
-                onPress={ () => navigation.navigate('Recover')}
-              >
-                <Text style={styles.textForgotPassword}>Esqueci minha senha</Text>
-              </TouchableOpacity>
-
-              
-              <LinearGradient
-                colors={['#24AC6E', '#34F683']}
-                start={{ x: 1, y: 1 }}
-                end={{ x: 0, y: 0 }}
-                style={styles.buttonBackgroundSignIn}
-              >
-                <TouchableOpacity
-                  onPress={handleSubmitSignIn}
-                  style={styles.buttonSignIn}
+                <TouchableOpacity 
+                  style={styles.boxForgotPassword}
+                  onPress={handleNavigateToRecover}
                 >
-                  <Text style={styles.textSignIn}>Entrar</Text>
+                  <Text style={styles.textForgotPassword}>Esqueci minha senha</Text>
                 </TouchableOpacity>
-              </LinearGradient>
 
-              <TouchableOpacity 
-                style={styles.buttonSignUp}
-                onPress={() => navigation.navigate('Create')}
-              >
-                <Text style={styles.textSignUp}>Cadastrar</Text>
-              </TouchableOpacity>
+                <LinearGradient
+                  colors={['#24AC6E', '#34F683']}
+                  start={{ x: 1, y: 1 }}
+                  end={{ x: 0, y: 0 }}
+                  style={styles.buttonBackgroundSignIn}
+                >
+                  <TouchableOpacity
+                    onPress={handleSubmitSignIn}
+                    style={styles.buttonSignIn}
+                  >
+                    <Text style={styles.textSignIn}>Entrar</Text>
+                  </TouchableOpacity>
+                </LinearGradient>
 
-            </View>
-
+                <TouchableOpacity 
+                  style={styles.buttonSignUp}
+                  onPress={handleNavigateToCreateUser}
+                >
+                  <Text style={styles.textSignUp}>Cadastrar</Text>
+                </TouchableOpacity>
+            </KeyboardAvoidingView>
               <Modal
                 animationType="slide"
                 visible={modalVisible}
@@ -149,12 +158,12 @@ export default function Login(){
                         }
 
                       </ScrollView>
-                      <RectButton
+                      <TouchableOpacity
                         style={styles.buttonCloseModal}
                         onPress={() => setModalVisible(false)}
                       >
                         <Text style={styles.textCloseModal}>Tudo bem!</Text>
-                      </RectButton>
+                      </TouchableOpacity>
                     </View>
                 </View>
               </Modal>
