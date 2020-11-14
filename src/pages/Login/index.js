@@ -110,7 +110,6 @@ export default function Login(){
                   <Text style={styles.textForgotPassword}>Esqueci minha senha</Text>
                 </TouchableOpacity>
 
-                
                 <LinearGradient
                   colors={['#24AC6E', '#34F683']}
                   start={{ x: 1, y: 1 }}
@@ -132,7 +131,6 @@ export default function Login(){
                   <Text style={styles.textSignUp}>Cadastrar</Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
-
               <Modal
                 animationType="slide"
                 visible={modalVisible}
