@@ -24,8 +24,6 @@ export default StyleSheet.create({
         marginTop: 20,
         flex: 1, 
     },
-
-
     welcomeName: {
         marginTop: 20,
         fontSize: 22,
@@ -38,7 +36,6 @@ export default StyleSheet.create({
         color: '#34F683',
         fontFamily: 'Ubuntu_700Bold'
     },
-
 
     cards: {
         marginTop: 40
