@@ -9,6 +9,7 @@ import Loading from '../pages/Loading';
 import Home from '../pages/Home';
 import Feed from '../pages/Feed';
 import Friends from '../pages/Friends';
+import CreateInvestment from '../pages/CreateInvestment';
 
 export default function Tabs() {
     return (
@@ -53,20 +54,20 @@ export default function Tabs() {
                     }}
                 />
                 <Screen 
+                    name="CreateInvestment" 
+                    component={CreateInvestment}
+                    options={{
+                        tabBarIcon: ({color}) => {
+                            return (<MaterialIcons name="attach-money" size={30} color={color}/>);
+                        }
+                    }}
+                />
+                <Screen 
                     name="Feed" 
                     component={Feed}
                     options={{
                         tabBarIcon: ({color}) => {
                             return (<FontAwesome name="paper-plane-o" size={25} color={color}/>);
-                        }
-                    }}
-                />
-                <Screen 
-                    name="Loading" 
-                    component={Loading}
-                    options={{
-                        tabBarIcon: ({color}) => {
-                            return (<MaterialIcons name="attach-money" size={30} color={color}/>);
                         }
                     }}
                 />
