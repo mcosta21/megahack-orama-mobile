@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import {  Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
+import {  Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
