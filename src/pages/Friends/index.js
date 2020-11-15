@@ -47,14 +47,14 @@ export default function Friends(){
           <TitleWelcome title='Amigos' description='Estes são seus amigos investidores'/>
         </SafeAreaView>
 
-        <ScrollView showsVerticalScrollIndicator={false} >
           <LinearGradient
             colors={['#24AC6E', '#34F683']}
             start={{ x: 1, y: 1 }}
             end={{ x: 0, y: 0 }}
             style={styles.backgroundImage}
           >
-            <View style={styles.resultContainer}>
+          <View style={styles.resultContainer}>
+            <ScrollView showsVerticalScrollIndicator={false}>
               {friends?.map((friend, key) => (
                 <View style={styles.boxFriend} key={key}>
                   <View style={styles.boxFriendContent}>
@@ -69,10 +69,10 @@ export default function Friends(){
                   />
               </View>
               ))}
-            </View>
 
+            </ScrollView>
+          </View>
           </LinearGradient>
-        </ScrollView>
       </ImageBackground>
     </SafeAreaView>
   );

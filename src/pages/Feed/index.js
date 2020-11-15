@@ -11,22 +11,17 @@ export default function Feed() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-      const isMounted = true;
-      getPostsByUser(isMounted);
-
-      return () => {
-        isMounted = false;
-      }
+      getPostsByUser();
     }, []);
 
-    function getPostsByUser(isMounted){
-      if(isMounted) {
+    function getPostsByUser(){
         api.get('posts').then(response => {
+          
           if(response.data.length !== 0){
             let postsByUser = [];
             response.data.map(post => {
               return (
-                post.series.map((item, index) => {
+                post.investments.map((item, index) => {
                   const data = {
                     post_id: index + 1,
                     user_id: post.user.id,
@@ -38,9 +33,9 @@ export default function Feed() {
               );
             });
             setPosts(postsByUser);
+            console.log(posts);
           }
         });
-      }
     }
 
     function handleNavigateToHome(){
@@ -48,7 +43,6 @@ export default function Feed() {
     }
 
     function handleClickUpdatePosts(){
-      console.log('post')
       getPostsByUser();
     }
 
@@ -79,7 +73,7 @@ export default function Feed() {
                 :
                   <View style={styles.posts}>
                     {
-                      posts.map((post, index) => {
+                      posts?.map((post, index) => {
                         return <Post 
                                   key={index}
                                   category={post.category} 
