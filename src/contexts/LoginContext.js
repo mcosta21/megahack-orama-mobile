@@ -10,9 +10,11 @@ const LoginProvider = ( { children } ) => {
   const [email, setEmail] = useState('');
   const [yieldReceived, setYieldReceived] = useState(null);
   const [errorMessages, setErrorMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   
   const signIn = async (email, password) => {
+    setLoading(true);
     setErrorMessages([]);
     let result;
 
@@ -51,11 +53,14 @@ const LoginProvider = ( { children } ) => {
       }
     });
 
+    setLoading(false);    
     return result;
   };
 
   const signUp = (firstName, lastName, email, password, passwordConfirmation) => {
+    setLoading(true);
     setErrorMessages([]);
+
     const formData = {
       "firstName": firstName,
       "lastName": lastName,
@@ -67,17 +72,21 @@ const LoginProvider = ( { children } ) => {
 
     api.post('/users', formData).then(response => {
       const { status, data } = response;
-
       if(status === 201) {
+
         signIn(email, password);
       }
 
       if(status === 203) {
         if(Array.isArray(data)) {
           setErrorMessages(data);
+          setLoading(false);
+          return data;
         }
         else {
           setErrorMessages([data]);
+          setLoading(false);
+          return data;
         }
       }
     });
@@ -91,6 +100,7 @@ const LoginProvider = ( { children } ) => {
       lastName,
       setLastName,
       email,
+      loading,
       yieldReceived,
       errorMessages,
       signIn,

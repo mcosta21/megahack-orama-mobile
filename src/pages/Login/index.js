@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import { Keyboard, TouchableWithoutFeedback, Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground } from 'react-native';
+import { ActivityIndicator, Keyboard, TouchableWithoutFeedback, Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -89,7 +89,13 @@ export default function Login(){
                     onPress={handleSubmitSignIn}
                     style={styles.buttonSignIn}
                   >
-                    <Text style={styles.textSignIn}>Entrar</Text>
+                    {
+                      context.loading? (
+                        <ActivityIndicator size={30} color='#000' />
+                      ) : (
+                        <Text style={styles.textSignIn}>Entrar</Text>
+                      )
+                    }
                   </TouchableOpacity>
                 </LinearGradient>
 

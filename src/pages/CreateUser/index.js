@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import {  Platform, Text, View, Keyboard, KeyboardAvoidingView, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import {  ActivityIndicator, Platform, Text, View, Keyboard, KeyboardAvoidingView, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -25,7 +25,7 @@ export default function CreateUser(){
   }
 
   async function handleSubmitSignUp(){
-    await context.signUp(name, lastName, email, password, passwordConfirm);
+    const errors = await context.signUp(name, lastName, email, password, passwordConfirm);
 
     setPassword('');
     setPasswordConfirm('');
@@ -36,13 +36,8 @@ export default function CreateUser(){
       setModalVisible(false);
     }
 
-    if(context.errorMessages[0] !== undefined) {
+    if(errors !== false) {
       setModalVisible(true);
-    }
-    else {
-      if(context.errorMessages !== undefined) {
-        setModalVisible(true);
-      }
     }
   }
 
@@ -138,8 +133,14 @@ export default function CreateUser(){
                         onPress={handleSubmitSignUp}
                         style={styles.buttonSignUp}
                         >
-                        <Text style={styles.textSignUp}>Registrar</Text>
-                      </TouchableOpacity>
+                        {
+                          context.loading? (
+                            <ActivityIndicator size={30} color='#000' />
+                          ) : (
+                            <Text style={styles.textSignUp}>Registrar</Text>
+                          )
+                        }
+                    </TouchableOpacity>
                   </LinearGradient>
 
                   <TouchableOpacity 

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import { Text, View, TouchableOpacity, ScrollView, Image, KeyboardAvoidingView } from 'react-native';
+import { ActivityIndicator, Text, View, TouchableOpacity, ScrollView, Image, KeyboardAvoidingView } from 'react-native';
 import InputText from '../../components/InputText';
 import { AntDesign, Feather } from '@expo/vector-icons';
 
@@ -22,14 +22,17 @@ export default function Setting() {
   const [lastName, setLastName] = useState(context.lastName);
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [loading, setLoading] = useState(false);
   
   function handleNavigateToHome(){
     navigate('Home');
   }
 
   function handleUpdateUserData() {
+    setLoading(true);
     if(password !== passwordConfirmation && password !== '') {
       alert('Senha inválida');
+      setLoading(false);
       return;
     }
 
@@ -49,6 +52,10 @@ export default function Setting() {
         context.setFirstName(firstName);
         context.setLastName(lastName);
       }
+
+      setLoading(false);
+    }).catch(err => {
+      setLoading(false);
     })
   }
 
@@ -143,7 +150,12 @@ export default function Setting() {
                 onPress={handleUpdateUserData}
                 style={styles.buttonSave}
               >
-                <Text style={styles.textSave}>Salvar</Text>
+                {loading? (
+                  <ActivityIndicator size={30} color='#000' />
+                ) : (
+                  <Text style={styles.textSave}>Salvar</Text>
+                )
+                }
               </TouchableOpacity>
             </LinearGradient>
 
