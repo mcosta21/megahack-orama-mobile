@@ -1,40 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import {  Text, View, KeyboardAvoidingView, TouchableOpacity, TextInput } from 'react-native';
+import {  Text, View, FlatList, TouchableOpacity } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { RectButton } from 'react-native-gesture-handler';
 
-export default function Friends( {navigation} ){
-    const { navigate } = useNavigation();
+import api from '../../services/api';
 
-    function handleNavigateToHome(){
-      navigate('Drawer');
-    }
+export default function Friends(){
+  const { navigate } = useNavigation();
 
-    return (
+  const [ friends, setFriends ] = useState([]);
 
-      <View style={styles.containerProcurar}>
+  function handleSearchUser() {
 
-        <SafeAreaView style={{backgroundColor: '#2f363c' }} />
+  }
+
+  return (
+    <View style={styles.searchContainer}>
+      <SafeAreaView>
+        <Text>Amigos</Text>
         
-          <TextInput
-            placeholder="Procurar"
-            placeholderTextColor="#dddddd"
-            style={{backgroundColor:'#2f363c',
-            height: 50,
-            fontSize: 18,
-            padding: 10,
-            color: 'white'
-        }} 
-        />
-
-        <View style={styles.containerAmigos}>
-
-        </View>
-
+      </SafeAreaView>
+        <TouchableOpacity onPress={handleSearchUser} style={styles.searchBtn} >
+          <Text>Buscar</Text>
+        </TouchableOpacity>
+      <View style={styles.resultContainer}>
+        
       </View>
+    </View>
   );
 };

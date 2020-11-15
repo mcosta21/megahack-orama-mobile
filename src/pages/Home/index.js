@@ -121,7 +121,7 @@ export default function Home({ navigation }) {
               <Text style={styles.investmentTitle}>Meus investimentos</Text>
 
               {investments.map((investment, key) => (
-                <TouchableOpacity style={styles.investmentCard}>
+                <TouchableOpacity style={styles.investmentCard} key={key}>
                   <View style={styles.investmentCardBorder}>
                     <View style={styles.investmentCardImage}>
                       <Text style={styles.investmentCardText}>{`#${key+1}`}</Text>
