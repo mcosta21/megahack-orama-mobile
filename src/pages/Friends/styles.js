@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 export default StyleSheet.create({
   container:{
     flex: 1,
-    paddingTop: Constants.statusBarHeight,
+    paddingTop: Constants.statusBarHeight + 20,
     backgroundColor: '#182024',
   },
   image: {
@@ -32,5 +32,30 @@ export default StyleSheet.create({
     width: '100%',
     height: 60,
     borderRadius: 8,
+  },
+  boxFriend: {
+    paddingVertical: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  boxFriendContent: {
+      flexDirection: 'row',
+      alignItems: 'center',
+  },
+  userImage: {
+      width: 80,
+      height: 80,
+      borderWidth: 2,
+      borderRadius: 9,
+      borderColor: '#34F683',
+  },
+  userName: {
+      marginLeft: 15,
+      color: '#FFF',
+      fontFamily: 'Ubuntu_500Medium',
+      fontSize: 16,
+
   }
 });

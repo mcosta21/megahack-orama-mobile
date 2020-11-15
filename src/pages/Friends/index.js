@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import {  Text, View, ImageBackground, TouchableOpacity, SafeAreaView } from 'react-native';
+import {  Text, ScrollView, View, Image, ImageBackground, TouchableOpacity, SafeAreaView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { AntDesign  } from '@expo/vector-icons';
+import { AntDesign, Feather } from '@expo/vector-icons';
+import userImage from '../../assets/user-image.png';
 
 import TitleWelcome from '../../components/TitleWelcome';
 
@@ -46,26 +47,33 @@ export default function Friends(){
           <TitleWelcome title='Amigos' description='Estes são seus amigos investidores'/>
         </SafeAreaView>
 
-        <LinearGradient
-          colors={['#24AC6E', '#34F683']}
-          start={{ x: 1, y: 1 }}
-          end={{ x: 0, y: 0 }}
-          style={styles.backgroundImage}
-        >
-          <View style={styles.resultContainer}>
-            {friends?.map((friend, key) => (
-              <>
-                <Text key={key}>{friend.firstName}</Text>
-                <TouchableOpacity onPress={() => handleRemoveFriend(friend.id)}>
-                  <Text>--------------</Text>
-                  <Text>-------------</Text>
-                </TouchableOpacity>
-              </>
-            ))}
-          </View>
+        <ScrollView showsVerticalScrollIndicator={false} >
+          <LinearGradient
+            colors={['#24AC6E', '#34F683']}
+            start={{ x: 1, y: 1 }}
+            end={{ x: 0, y: 0 }}
+            style={styles.backgroundImage}
+          >
+            <View style={styles.resultContainer}>
+              {friends?.map((friend, key) => (
+                <View style={styles.boxFriend}>
+                  <View style={styles.boxFriendContent}>
+                    <Image source={userImage} style={styles.userImage}/>
+                    <Text style={styles.userName}>{friend.firstName} {friend.lastName}</Text>
+                  </View>
+                  <Feather 
+                  onPress={() => handleRemoveFriend(friend.id)}
+                  name="minus-circle" 
+                  size={24} 
+                  color="#24AC6E" 
+                  />
+              </View>
+              ))}
+            </View>
 
-        </LinearGradient>
-        </ImageBackground>
+          </LinearGradient>
+        </ScrollView>
+      </ImageBackground>
     </SafeAreaView>
   );
 };
