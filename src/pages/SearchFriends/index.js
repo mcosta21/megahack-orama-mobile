@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import { Keyboard, ScrollView, TouchableWithoutFeedback, Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground } from 'react-native';
+import { Keyboard, ScrollView, TouchableWithoutFeedback, Text, View, Image, TouchableOpacity, ImageBackground } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LoginContext } from '../../contexts/LoginContext';
-import { AntDesign, FontAwesome  } from '@expo/vector-icons';
+import { AntDesign, FontAwesome, Feather  } from '@expo/vector-icons';
 import TitleWelcome from '../../components/TitleWelcome';
+import userImage from '../../assets/user-image.png';
 
 export default function SearchFriends(){
 
@@ -17,6 +18,11 @@ export default function SearchFriends(){
     function handleNavigateToHome(){
       navigate('Home');
     }
+
+    function handleClickAddFriend(){
+      console.log('add')
+    }
+
     return (
 
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -29,7 +35,7 @@ export default function SearchFriends(){
                     <AntDesign name="arrowleft" size={24} color="#182024"/>
                 </View>
 
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                   <View 
                     style={styles.content} 
                   >
@@ -52,6 +58,67 @@ export default function SearchFriends(){
                         <FontAwesome name="search" size={24} color="#24AC6E" />
                       </TouchableOpacity>
                     </View>
+
+                    <TouchableOpacity 
+                      style={styles.boxFriend}
+                    >
+                      <View style={styles.boxFriendContent}>
+                        <Image source={userImage} style={styles.userImage}/>
+                        <Text style={styles.userName}>Marcio Costa</Text>
+                      </View>
+                      <Feather 
+                        onPress={() => handleClickAddFriend()}
+                        name="plus-circle" 
+                        size={24} 
+                        color="#24AC6E" 
+                      />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                      style={styles.boxFriend}
+                    >
+                      <View style={styles.boxFriendContent}>
+                        <Image source={userImage} style={styles.userImage}/>
+                        <Text style={styles.userName}>Marcio Costa</Text>
+                      </View>
+                      <Feather 
+                        onPress={() => handleClickAddFriend()}
+                        name="plus-circle" 
+                        size={24} 
+                        color="#24AC6E" 
+                      />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                      style={styles.boxFriend}
+                    >
+                      <View style={styles.boxFriendContent}>
+                        <Image source={userImage} style={styles.userImage}/>
+                        <Text style={styles.userName}>Marcio Costa</Text>
+                      </View>
+                      <Feather 
+                        onPress={() => handleClickAddFriend()}
+                        name="plus-circle" 
+                        size={24} 
+                        color="#24AC6E" 
+                      />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                      style={styles.boxFriend}
+                    >
+                      <View style={styles.boxFriendContent}>
+                        <Image source={userImage} style={styles.userImage}/>
+                        <Text style={styles.userName}>Marcio Costa</Text>
+                      </View>
+                      <Feather 
+                        onPress={() => handleClickAddFriend()}
+                        name="plus-circle" 
+                        size={24} 
+                        color="#24AC6E" 
+                      />
+                    </TouchableOpacity>
+
                   </View>
                 </ScrollView>
 
