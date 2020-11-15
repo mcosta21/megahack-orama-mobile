@@ -26,21 +26,21 @@ export default function Home({ navigation }) {
     {
       firstLine: 'MEU',
       secondLine: 'PRECIOSO',
-      category: 'RENDA FIXA',
+      category: 'TESOURO DIRETO',
       image: imageRendaFixa,
       path: 'Loading'
     },
     {
       firstLine: 'EU SOU O...',
       secondLine: undefined,
-      category: 'OFERTAS PÚBLICAS',
+      category: 'POUPANÇA',
       image: imageOfertasPublicas,
       path: 'Login'
     },
     {
       firstLine: 'DIMDIM...',
       secondLine: 'DIMDIM...',
-      category: 'POUPANÇA',
+      category: 'RENDA FIXA',
       image: imagePoupanca,
       path: 'Loading'
     }
@@ -65,10 +65,7 @@ export default function Home({ navigation }) {
       if(isMounted) {
         await api.get('/investments').then(response => {
           const { status, data } = response;
-
-          console.log(`.`);
-          console.log(data);
-
+          console.log(status);
           if(status === 200) {
             setInvestments(data);
           }
@@ -81,7 +78,7 @@ export default function Home({ navigation }) {
     return () => {
       isMounted = false;
     }
-  }, [])
+  }, []);
 
   return (
     <View style={styles.container}>

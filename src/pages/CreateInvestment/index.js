@@ -24,7 +24,7 @@ export default function CreateInvestment(){
     const [privateBool, setPrivateBool] = useState(true);
 
     useEffect(() => {
-        const isMounted = true;
+        let isMounted = true;
         const getCategories = async () => {
             if(isMounted) {
                 await api.get('categories').then(response => {
@@ -55,7 +55,7 @@ export default function CreateInvestment(){
         });
     }
 
-    function handleSubmit(){
+    async function handleSubmit(){
         
         const days = serie.duration*24*60*60*1000;
         const expirationDate = new Date(Date.now() + days);
@@ -66,8 +66,20 @@ export default function CreateInvestment(){
             serieId: serie.id
         }
 
-        api.post('investments', data).then(response => {
-            console.log(response);
+        await api.post('investments', data).then(response => {
+            const { status, data } = response;
+            console.log(data.private)
+            if(data.private === true) {
+                const postData = {
+                    title: data.serie.title,
+                    description: 'Olhe o meu novo investimento!',
+                    investmentId: data.id,
+                }
+                api.post('posts', postData).then(response => {
+                    console.log(response.status);
+                })
+            }
+            navigate('Feed');
         });
     }
 
