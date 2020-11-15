@@ -119,6 +119,7 @@ export default function Setting() {
                   isBlack={true}
                   placeholder="Digite sua senha"
                   autoCorrect={false}
+                  secureTextEntry={true}
                   value={password}
                   onChangeText={value => setPassword(value)}
                 />
@@ -126,6 +127,7 @@ export default function Setting() {
                   isBlack={true}
                   placeholder="Confirme sua senha"
                   autoCorrect={false}
+                  secureTextEntry={true}
                   value={passwordConfirmation}
                   onChangeText={value => setPasswordConfirmation(value)}
                 />

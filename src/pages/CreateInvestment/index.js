@@ -195,6 +195,7 @@ export default function CreateInvestment(){
                                 height={130}
                                 disabled={true}
                                 isBlack={true}
+                                multiline={true}
                                 value={serie.description}
                                 onChangeText={() => {}}
                             />
@@ -271,6 +272,7 @@ export default function CreateInvestment(){
                                         name="postDescription"
                                         height={100}
                                         isBlack={true}
+                                        multiline={true}
                                         value={postDescription}
                                         onChangeText={(text) => setPostDescription(text)}
                                     />

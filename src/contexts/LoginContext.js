@@ -12,23 +12,26 @@ const LoginProvider = ( { children } ) => {
   const [errorMessages, setErrorMessages] = useState([]);
 
   
-  const signIn = (email, password) => {
+  const signIn = async (email, password) => {
     setErrorMessages([]);
+    let result;
+
     const formData = {
       "email": email !== undefined ? email.toLowerCase() : undefined,
       "password": password,
     }
 
-    api.post('auth', formData).then(response => {
+    await api.post('auth', formData).then(response => {
       const { status, data } = response;
 
-      if(status * 1 === 203 * 1) {
-
+      if(status === 203) {
         if(Array.isArray(data)) {
           setErrorMessages(data);
+          result = data;
         }
         else {
           setErrorMessages([data]);
+          result = [data];
         }
       }
 
@@ -43,14 +46,12 @@ const LoginProvider = ( { children } ) => {
         setEmail(email);
         setYieldReceived(yieldReceived);
         setErrorMessages([]);
+
+        result = false;
       }
     });
 
-    if(errorMessages[0] !== undefined) {
-      return errorMessages;
-    }
-
-    return false;
+    return result;
   };
 
   const signUp = (firstName, lastName, email, password, passwordConfirmation) => {
