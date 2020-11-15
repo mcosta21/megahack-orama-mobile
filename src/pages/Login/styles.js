@@ -84,7 +84,7 @@ export default StyleSheet.create({
    
     
     buttonCloseModal: {
-        margin: 20,
+        marginVertical: 20,
         backgroundColor: '#24AC6E',
         height: 60,
         alignItems: 'center',

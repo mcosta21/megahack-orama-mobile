@@ -12,15 +12,15 @@ const LoginProvider = ( { children } ) => {
   const [errorMessages, setErrorMessages] = useState([]);
 
   
-  const signIn = async (email, password) => {
+  const signIn = (email, password) => {
+    setErrorMessages([]);
     const formData = {
       "email": email !== undefined ? email.toLowerCase() : undefined,
       "password": password,
     }
 
-    await api.post('auth', formData).then(response => {
+    api.post('auth', formData).then(response => {
       const { status, data } = response;
-      console.log(status);
 
       if(status * 1 === 203 * 1) {
         if(Array.isArray(data)) {
@@ -49,12 +49,14 @@ const LoginProvider = ( { children } ) => {
   };
 
   const signUp = async (firstName, lastName, email, password, passwordConfirmation) => {
+    setErrorMessages([]);
     const formData = {
       "firstName": firstName,
       "lastName": lastName,
       "email": email,
       "password": password,
       "passwordConfirmation": passwordConfirmation,
+      "yieldReceived": 0
     }
 
     await api.post('/users', formData).then(response => {

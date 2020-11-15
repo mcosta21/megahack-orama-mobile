@@ -14,6 +14,7 @@ export default StyleSheet.create({
         marginRight: 20
     },
     messageText: {
+        width: 220,
         color: '#FFF',
         fontSize: 15,
         fontFamily: 'Ubuntu_500Medium',

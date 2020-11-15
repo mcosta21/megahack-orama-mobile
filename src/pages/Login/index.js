@@ -108,7 +108,8 @@ export default function Login(){
             </KeyboardAvoidingView>
 
             <Popup
-              visible={modalVisible}
+              title={'Ops, mas...'}
+              visible={modalVisible && context.errorMessages.length > 0}
               onRequestClose={() => { setModalVisible(false); }}
             >
                 {

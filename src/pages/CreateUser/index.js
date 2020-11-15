@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import {  Text, View, Keyboard, KeyboardAvoidingView, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import {  Platform, Text, View, Keyboard, KeyboardAvoidingView, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { LoginContext } from '../../contexts/LoginContext';
-
+import Popup from '../../components/Popup';
+import Message from '../../components/Message';
 
 export default function CreateUser(){
   const context = useContext(LoginContext);
@@ -34,98 +35,145 @@ export default function CreateUser(){
       setPassword('');
       setModalVisible(false);
     }
+
+    if(context.errorMessages[0] !== undefined) {
+      setModalVisible(true);
+    }
+    else {
+      if(context.errorMessages !== undefined) {
+        setModalVisible(true);
+      }
+    }
   }
 
     return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <SafeAreaView style={styles.container}>
-          <ScrollView showsVerticalScrollIndicator={false} >
-          <KeyboardAvoidingView style={styles.content}>
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === "ios" ? "padding" : null}
+        style={{ flex: 1 }}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <SafeAreaView style={styles.container}>
 
-            <View style={styles.header}>
-              <Text style={styles.title}>ÓRAMA</Text>
-            </View>
+            <ScrollView showsVerticalScrollIndicator={false} >
+              
+                <View style={styles.content}>
 
-            <View style={styles.SignUp}>
-              <Text style={styles.SignUpText}>Cadastrar</Text>
-            </View>
+                  <View style={styles.header}>
+                    <Text style={styles.title}>ÓRAMA</Text>
+                  </View>
 
-            <View style={styles.boxText}>
-              <Text style={styles.text}>Nome</Text>
-            </View>
-            <InputText 
-              placeholder="Digite seu nome"
-              autoCorrect={false}
-              value={name}
-              onChangeText={value => setName(value)}
-            />
+                  <View style={styles.body}>
+                      
+                      <View style={styles.SignUp}>
+                        <Text style={styles.SignUpText}>Cadastrar</Text>
+                      </View>
+                      <View style={styles.form}>
+                      
+                        <View style={styles.boxText}>
+                          <Text style={styles.text}>Nome</Text>
+                        </View>
+                        <InputText 
+                          placeholder="Digite seu nome"
+                          isBlack={true}
+                          autoCorrect={false}
+                          value={name}
+                          onChangeText={value => setName(value)}
+                        />
 
-            <View style={styles.boxText}>
-              <Text style={styles.text}>Sobrenome</Text>
-            </View>
-            <InputText 
-              placeholder="Digite seu sobrenome"
-              autoCorrect={false}
-              value={lastName}
-              onChangeText={value => setLastName(value)}
-            />
+                        <View style={styles.boxText}>
+                          <Text style={styles.text}>Sobrenome</Text>
+                        </View>
+                        <InputText 
+                          placeholder="Digite seu sobrenome"
+                          autoCorrect={false}
+                          isBlack={true}
+                          value={lastName}
+                          onChangeText={value => setLastName(value)}
+                        />
 
-            <View style={styles.boxText}>
-              <Text style={styles.text}>E-mail</Text>
-            </View>
-            <InputText 
-              placeholder="Digite seu e-mail"
-              autoCorrect={false}
-              autoCapitalize='none'
-              value={email}
-              onChangeText={value => setEmail(value)}
-            />
+                        <View style={styles.boxText}>
+                          <Text style={styles.text}>E-mail</Text>
+                        </View>
+                        <InputText 
+                          placeholder="Digite seu e-mail"
+                          isBlack={true}
+                          autoCorrect={false}
+                          autoCapitalize='none'
+                          value={email}
+                          onChangeText={value => setEmail(value)}
+                        />
 
-            <View style={styles.boxText}>
-              <Text style={styles.text}>Senha</Text>
-            </View>
-            <InputText 
-              placeholder="Digite sua senha"
-              autoCorrect={false}
-              autoCapitalize="none"
-              secureTextEntry={true}
-              value={password}
-              onChangeText={value => setPassword(value)}
-            />
-            <InputText 
-              placeholder="Confirme sua senha"
-              autoCorrect={false}
-              autoCapitalize="none"
-              secureTextEntry={true}
-              value={passwordConfirm}
-              onChangeText={value => setPasswordConfirm(value)}
-            />
+                        <View style={styles.boxText}>
+                          <Text style={styles.text}>Senha</Text>
+                        </View>
+                        <InputText 
+                          placeholder="Digite sua senha"
+                          autoCorrect={false}
+                          isBlack={true}
+                          autoCapitalize="none"
+                          secureTextEntry={true}
+                          value={password}
+                          onChangeText={value => setPassword(value)}
+                        />
+                        <InputText 
+                          placeholder="Confirme sua senha"
+                          isBlack={true}
+                          autoCorrect={false}
+                          autoCapitalize="none"
+                          secureTextEntry={true}
+                          value={passwordConfirm}
+                          onChangeText={value => setPasswordConfirm(value)}
+                        />
 
-            <LinearGradient
-              colors={['#24AC6E', '#34F683']}
-              start={{ x: 1, y: 1 }}
-              end={{ x: 0, y: 0 }}
-              style={styles.buttonBackgroundSignUp}
-              >
-              <TouchableOpacity
-                onPress={handleSubmitSignUp}
-                style={styles.buttonSignUp}
+                      </View>
+                  </View>
+
+                  <LinearGradient
+                    colors={['#24AC6E', '#34F683']}
+                    start={{ x: 1, y: 1 }}
+                    end={{ x: 0, y: 0 }}
+                    style={styles.buttonBackgroundSignUp}
+                    >
+                      <TouchableOpacity
+                        onPress={handleSubmitSignUp}
+                        style={styles.buttonSignUp}
+                        >
+                        <Text style={styles.textSignUp}>Registrar</Text>
+                      </TouchableOpacity>
+                  </LinearGradient>
+
+                  <TouchableOpacity 
+                    style={styles.boxAlreadyHaveAcc}
+                    onPress={handleNavigateToHome}
+                  >
+                    <Text style={styles.textAlreadyHaveAcc}>Ja tenho conta!</Text>
+                  </TouchableOpacity>
+                </View>
+            </ScrollView>  
+
+            <Popup
+              title={"Ops, mas..."}
+              visible={modalVisible && context.errorMessages.length > 0}
+              onRequestClose={() => { setModalVisible(false); }}
+            >
+                {
+                  context.errorMessages?.map((error, index) => {
+                    return (
+                      <Message key={index} index={index} message={error.message} />
+                    )
+                  })
+                }
+
+                <TouchableOpacity
+                  style={styles.buttonCloseModal}
+                  onPress={() => setModalVisible(false)}
                 >
-                <Text style={styles.textSignUp}>Registrar</Text>
-              </TouchableOpacity>
-            </LinearGradient>
+                  <Text style={styles.textCloseModal}>Tudo bem!</Text>
+                </TouchableOpacity>
+            </Popup>
 
-            <TouchableOpacity 
-                style={styles.boxAlreadyHaveAcc}
-                onPress={handleNavigateToHome}
-              >
-                <Text style={styles.textAlreadyHaveAcc}>Ja tenho conta!</Text>
-              </TouchableOpacity>
-
-          </KeyboardAvoidingView>   
-          </ScrollView>  
-
-        </SafeAreaView>
-      </TouchableWithoutFeedback>
+          </SafeAreaView>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
  );
 };
