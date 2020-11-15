@@ -1,19 +1,43 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import { Keyboard, ScrollView, TouchableWithoutFeedback, Text, View, Image, TouchableOpacity, ImageBackground } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LoginContext } from '../../contexts/LoginContext';
 import { AntDesign, FontAwesome, Feather  } from '@expo/vector-icons';
 import TitleWelcome from '../../components/TitleWelcome';
 import userImage from '../../assets/user-image.png';
+import api from '../../services/api';
+import { LoginContext } from '../../contexts/LoginContext';
 
 export default function SearchFriends(){
 
     const { navigate } = useNavigation();
+    const context = useContext(LoginContext);
 
+    const userId = context.id;
+    const [friends, setFriends] = useState([]);
     const [friend, setFriend] = useState();
+
+    useEffect(() => {
+      api.get('users').then(response => {
+        const users = response.data;
+
+        const usersWithoutMe = users.filter(user => user.id !== userId && user );
+        
+        api.get('friends').then(response => {
+          const friends = response.data;
+
+          const NotMyFriends = usersWithoutMe.filter(user => {
+            return (
+                console.log(user)
+            )
+          })
+        });
+
+        setFriends(users);
+    });
+    }, []);
 
     function handleNavigateToHome(){
       navigate('Home');
@@ -59,65 +83,28 @@ export default function SearchFriends(){
                       </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity 
-                      style={styles.boxFriend}
-                    >
-                      <View style={styles.boxFriendContent}>
-                        <Image source={userImage} style={styles.userImage}/>
-                        <Text style={styles.userName}>Marcio Costa</Text>
-                      </View>
-                      <Feather 
-                        onPress={() => handleClickAddFriend()}
-                        name="plus-circle" 
-                        size={24} 
-                        color="#24AC6E" 
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity 
-                      style={styles.boxFriend}
-                    >
-                      <View style={styles.boxFriendContent}>
-                        <Image source={userImage} style={styles.userImage}/>
-                        <Text style={styles.userName}>Marcio Costa</Text>
-                      </View>
-                      <Feather 
-                        onPress={() => handleClickAddFriend()}
-                        name="plus-circle" 
-                        size={24} 
-                        color="#24AC6E" 
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity 
-                      style={styles.boxFriend}
-                    >
-                      <View style={styles.boxFriendContent}>
-                        <Image source={userImage} style={styles.userImage}/>
-                        <Text style={styles.userName}>Marcio Costa</Text>
-                      </View>
-                      <Feather 
-                        onPress={() => handleClickAddFriend()}
-                        name="plus-circle" 
-                        size={24} 
-                        color="#24AC6E" 
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity 
-                      style={styles.boxFriend}
-                    >
-                      <View style={styles.boxFriendContent}>
-                        <Image source={userImage} style={styles.userImage}/>
-                        <Text style={styles.userName}>Marcio Costa</Text>
-                      </View>
-                      <Feather 
-                        onPress={() => handleClickAddFriend()}
-                        name="plus-circle" 
-                        size={24} 
-                        color="#24AC6E" 
-                      />
-                    </TouchableOpacity>
+                    {
+                       friends?.map((friend, index) => {
+                        return (
+                          <TouchableOpacity 
+                            key={index}
+                            style={styles.boxFriend}
+                          >
+                            <View style={styles.boxFriendContent}>
+                              <Image source={userImage} style={styles.userImage}/>
+                              <Text style={styles.userName}>{`${friend.firstName} ${friend.lastName}`}</Text>
+                            </View>
+                            <Feather 
+                              onPress={() => handleClickAddFriend()}
+                              name="plus-circle" 
+                              size={24} 
+                              color="#24AC6E" 
+                            />
+                          </TouchableOpacity>
+                        )
+                      })
+                    }
+                    
 
                   </View>
                 </ScrollView>
