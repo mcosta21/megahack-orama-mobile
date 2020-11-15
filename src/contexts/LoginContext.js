@@ -4,49 +4,51 @@ import api from '../services/api';
 export const LoginContext = createContext();
 
 const LoginProvider = ( { children } ) => {
-  const [id, setId] = useState(undefined);
+  const [id, setId] = useState(null);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [yieldReceived, setYieldReceived] = useState(null);
   const [errorMessages, setErrorMessages] = useState([]);
+
   
-  const signIn = (email, password) => {
+  const signIn = async (email, password) => {
     const formData = {
       "email": email !== undefined ? email.toLowerCase() : undefined,
       "password": password,
     }
 
-    api.post('auth', formData).then(response => {
+    await api.post('auth', formData).then(response => {
       const { status, data } = response;
+      console.log(status);
 
-      switch(status) {
-        case 201:
-          const { id, firstName, lastName, token, yieldReceived } = data;
+      if(status * 1 === 203 * 1) {
+        if(Array.isArray(data)) {
+          setErrorMessages(data);
+        }
+        else {
+          setErrorMessages([data]);
+        }
+      }
 
-          api.defaults.headers.authorization = `Bearer ${token}`;
+      else {
+        const { id, firstName, lastName, token, yieldReceived } = data;
 
-          setId(id);
-          setFirstName(firstName);
-          setLastName(lastName);
-          setEmail(email);
-          setYieldReceived(yieldReceived);
-          
-          break;
-        case 203:
-            if(Array.isArray(data)) {
-              setErrorMessages(data);
-            }
-            else {
-              setErrorMessages([data]);
-            }
+        api.defaults.headers.authorization = `Bearer ${token}`;
 
-          break;
+        setId(id);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setYieldReceived(yieldReceived);
+        setErrorMessages([]);
       }
     });
-  }
 
-  const signUp = (firstName, lastName, email, password, passwordConfirmation) => {
+    return false;
+  };
+
+  const signUp = async (firstName, lastName, email, password, passwordConfirmation) => {
     const formData = {
       "firstName": firstName,
       "lastName": lastName,
@@ -55,7 +57,7 @@ const LoginProvider = ( { children } ) => {
       "passwordConfirmation": passwordConfirmation,
     }
 
-    api.post('/users', formData).then(response => {
+    await api.post('/users', formData).then(response => {
       const { status, data } = response;
 
       if(status === 201) {

@@ -15,14 +15,8 @@ export default function Login(){
     const context = useContext(LoginContext);
     const [modalVisible, setModalVisible] = useState(false);
 
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-
-    function handleNavigateToHome(){
-      navigate('Drawer');
-    }
 
     function handleNavigateToCreateUser(){
       navigate('CreateUser');
@@ -34,16 +28,18 @@ export default function Login(){
 
     async function handleSubmitSignIn(){
       await context.signIn(email, password);
-      setEmail('');
-      setPassword('');
-
-      if(context.errorMessages[0] !== undefined) {
-        setModalVisible(true);
+      
+      if(context.id) {
+        setEmail('');
+        setPassword('');
+        setModalVisible(false);
       }
+
       else {
-        handleNavigateToHome();
+        if(context.errorMessages !== undefined) {
+          setModalVisible(true);
+        }
       }
-
     }
 
     return (
@@ -128,7 +124,7 @@ export default function Login(){
                         </View>  
 
                         {
-                          context.errorMessages.map((error, index) => {
+                          context.errorMessages?.map((error, index) => {
                             return (
                               <View key={index} style={styles.message}>
                                 <Text style={styles.messageIndex}>#{index+1}</Text>

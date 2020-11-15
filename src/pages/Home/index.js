@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Feather, AntDesign } from '@expo/vector-icons';
 import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import styles from './styles';
@@ -11,150 +11,154 @@ import imagePoupanca from '../../assets/poupanca-minion.png';
 import { RectButton } from 'react-native-gesture-handler';
 import TitleWelcome from '../../components/TitleWelcome';
 
+import { LoginContext } from '../../contexts/LoginContext';
+
 export default function Home({ navigation }) {
-    const { navigate } = useNavigation();
+  const context = useContext(LoginContext);
 
-    const cards = [
-      {
-        firstLine: 'MEU',
-        secondLine: 'PRECIOSO',
-        category: 'RENDA FIXA',
-        image: imageRendaFixa,
-        path: 'Loading'
-      },
-      {
-        firstLine: 'EU SOU O...',
-        secondLine: undefined,
-        category: 'OFERTAS PÚBLICAS',
-        image: imageOfertasPublicas,
-        path: 'Login'
-      },
-      {
-        firstLine: 'DIMDIM...',
-        secondLine: 'DIMDIM...',
-        category: 'POUPANÇA',
-        image: imagePoupanca,
-        path: 'Loading'
-      }
-    ];
+  const { navigate } = useNavigation();
 
-    function handleNavigate(path) {
-      navigate(path)
+  const cards = [
+    {
+      firstLine: 'MEU',
+      secondLine: 'PRECIOSO',
+      category: 'RENDA FIXA',
+      image: imageRendaFixa,
+      path: 'Loading'
+    },
+    {
+      firstLine: 'EU SOU O...',
+      secondLine: undefined,
+      category: 'OFERTAS PÚBLICAS',
+      image: imageOfertasPublicas,
+      path: 'Login'
+    },
+    {
+      firstLine: 'DIMDIM...',
+      secondLine: 'DIMDIM...',
+      category: 'POUPANÇA',
+      image: imagePoupanca,
+      path: 'Loading'
     }
+  ];
 
-    function handleNavigateToDrawer(){
-      navigation.openDrawer();
-    }
+  function handleNavigate(path) {
+    navigate(path)
+  }
 
-    function handleNavigateToSetting(){
-      navigate('Setting');
-    }
+  function handleNavigateToDrawer(){
+    navigation.openDrawer();
+  }
 
-    return (
-      <View style={styles.container}>
-          
-          <View style={styles.header}>
-            <Feather onPress={handleNavigateToDrawer} name="align-left" size={26} color="#FFF"/>
-            <Text style={styles.title}>ÓRAMA</Text>
-            <Feather onPress={handleNavigateToSetting} name="settings" size={23} color="#FFF"/>
-          </View>
-          
-          <SafeAreaView style={styles.content}>
-            <ScrollView
-              showsVerticalScrollIndicator={false}>
-              
-              <TitleWelcome title="Olá, Mundo" description="Pronto para investir hoje?" />
-              
-              <ScrollView 
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                style={styles.cards}
-              >
-                {
-                  cards.map((card, index) => {
-                    return (
-                      <Card 
-                        key={index}
-                        firstLine={card.firstLine} 
-                        secondLine={card.secondLine} 
-                        category={card.category}
-                        image={card.image}
-                        onPress={() => handleNavigate(card.path)}
-                      />
-                    )
-                  })
-                }
-                  
-              </ScrollView>
-              
-              <View style={styles.investmentBox}>
-                <Text style={styles.investmentTitle}>Meus investimentos</Text>
+  function handleNavigateToSetting(){
+    navigate('Setting');
+  }
 
-                <RectButton style={styles.investmentCard}>
-                  <View style={styles.investmentCardBorder}>
-                    <View style={styles.investmentCardImage}>
-                      <Text style={styles.investmentCardText}>#1</Text>
-                    </View>
-                    <Text style={styles.investmentDescription}>Teste 1</Text>
-                  </View>
-                </RectButton>
-
-                <RectButton style={styles.investmentCard}>
-                  <View style={styles.investmentCardBorder}>
-                    <View style={styles.investmentCardImage}>
-                      <Text style={styles.investmentCardText}>#1</Text>
-                    </View>
-                    <Text style={styles.investmentDescription}>Teste 1</Text>
-                  </View>
-                </RectButton>
-
-                <RectButton style={styles.investmentCard}>
-                  <View style={styles.investmentCardBorder}>
-                    <View style={styles.investmentCardImage}>
-                      <Text style={styles.investmentCardText}>#1</Text>
-                    </View>
-                    <Text style={styles.investmentDescription}>Teste 1</Text>
-                  </View>
-                </RectButton>
-
-                <View style={styles.investmentBoxButton}>
-                  <RectButton onPress={() => {}} style={styles.investmentButton}>
-                    <AntDesign style={styles.investmentButtonIcon} name="arrowright" size={24} color="#24AC6E"/>
-                  </RectButton>
-                </View>
-
-              </View>
-              
-              <TitleWelcome title="Ranking Órama" description="Se torne o maior investidor do Brasil" />
-
-              <View style={styles.rankingBox}>
+  return (
+    <View style={styles.container}>
+        
+        <View style={styles.header}>
+          <Feather onPress={handleNavigateToDrawer} name="align-left" size={26} color="#FFF"/>
+          <Text style={styles.title}>ÓRAMA</Text>
+          <Feather onPress={handleNavigateToSetting} name="settings" size={23} color="#FFF"/>
+        </View>
+        
+        <SafeAreaView style={styles.content}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}>
+            
+            <TitleWelcome title={`Olá, ${context.firstName}`} description="Pronto para investir hoje?" />
+            
+            <ScrollView 
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              style={styles.cards}
+            >
+              {
+                cards.map((card, index) => {
+                  return (
+                    <Card 
+                      key={index}
+                      firstLine={card.firstLine} 
+                      secondLine={card.secondLine} 
+                      category={card.category}
+                      image={card.image}
+                      onPress={() => handleNavigate(card.path)}
+                    />
+                  )
+                })
+              }
                 
-                <RectButton style={styles.rankingCard}>
-                  <View style={styles.rankingCardImage}>
-                  </View>
-                  <View style={styles.rankingCardValues}>
-                    <Text style={styles.rankingCardPosition}>#1025</Text>
-                    <Text style={styles.rankingCardTitle}>Maior investidor Órama</Text>
-                  </View>
-                </RectButton>
+            </ScrollView>
+            
+            <View style={styles.investmentBox}>
+              <Text style={styles.investmentTitle}>Meus investimentos</Text>
 
-                <RectButton style={styles.rankingCard}>
-                  <View style={styles.rankingCardImage}>
+              <RectButton style={styles.investmentCard}>
+                <View style={styles.investmentCardBorder}>
+                  <View style={styles.investmentCardImage}>
+                    <Text style={styles.investmentCardText}>#1</Text>
                   </View>
-                  <View style={styles.rankingCardValues}>
-                    <Text style={styles.rankingCardPosition}>#1025</Text>
-                    <Text style={styles.rankingCardTitle}>Maior investidor do bairro</Text>
-                  </View>
-                </RectButton>
+                  <Text style={styles.investmentDescription}>Teste 1</Text>
+                </View>
+              </RectButton>
 
-                <RectButton style={styles.buttonSeeAll}>
-                  <Text style={styles.buttonSeeAllText}>Ver tudo</Text>
-                  <AntDesign style={styles.investmentButtonIcon} name="arrowright" size={22} color="#24AC6E"/>
+              <RectButton style={styles.investmentCard}>
+                <View style={styles.investmentCardBorder}>
+                  <View style={styles.investmentCardImage}>
+                    <Text style={styles.investmentCardText}>#1</Text>
+                  </View>
+                  <Text style={styles.investmentDescription}>Teste 1</Text>
+                </View>
+              </RectButton>
+
+              <RectButton style={styles.investmentCard}>
+                <View style={styles.investmentCardBorder}>
+                  <View style={styles.investmentCardImage}>
+                    <Text style={styles.investmentCardText}>#1</Text>
+                  </View>
+                  <Text style={styles.investmentDescription}>Teste 1</Text>
+                </View>
+              </RectButton>
+
+              <View style={styles.investmentBoxButton}>
+                <RectButton onPress={() => {}} style={styles.investmentButton}>
+                  <AntDesign style={styles.investmentButtonIcon} name="arrowright" size={24} color="#24AC6E"/>
                 </RectButton>
               </View>
-            </ScrollView>
-          </SafeAreaView>
 
-     </View>
+            </View>
+            
+            <TitleWelcome title="Ranking Órama" description="Se torne o maior investidor do Brasil" />
+
+            <View style={styles.rankingBox}>
+              
+              <RectButton style={styles.rankingCard}>
+                <View style={styles.rankingCardImage}>
+                </View>
+                <View style={styles.rankingCardValues}>
+                  <Text style={styles.rankingCardPosition}>#1025</Text>
+                  <Text style={styles.rankingCardTitle}>Maior investidor Órama</Text>
+                </View>
+              </RectButton>
+
+              <RectButton style={styles.rankingCard}>
+                <View style={styles.rankingCardImage}>
+                </View>
+                <View style={styles.rankingCardValues}>
+                  <Text style={styles.rankingCardPosition}>#1025</Text>
+                  <Text style={styles.rankingCardTitle}>Maior investidor do bairro</Text>
+                </View>
+              </RectButton>
+
+              <RectButton style={styles.buttonSeeAll}>
+                <Text style={styles.buttonSeeAllText}>Ver tudo</Text>
+                <AntDesign style={styles.investmentButtonIcon} name="arrowright" size={22} color="#24AC6E"/>
+              </RectButton>
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+
+    </View>
   );
 }

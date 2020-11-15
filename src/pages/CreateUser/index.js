@@ -17,9 +17,10 @@ export default function CreateUser(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
 
   function handleNavigateToHome(){
-    navigate('Drawer');
+    navigate('Login');
   }
 
   async function handleSubmitSignUp(){
@@ -28,12 +29,17 @@ export default function CreateUser(){
     setPassword('');
     setPasswordConfirm('');
     
-    if(context.errorMessages[0] !== undefined) {
-      setModalVisible(true);
+    if(context.id) {
+      setEmail('');
+      setPassword('');
+      setModalVisible(false);
     }
-    else {
-      handleNavigateToHome();
-    }
+
+    // else {
+    //   if(context.errorMessages !== undefined) {
+    //     setModalVisible(true);
+    //   }
+    // }
   }
 
     return (
