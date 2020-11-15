@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import Login from '../pages/Login';
 import CreateUser from '../pages/CreateUser';
+import Recover from '../pages/Recover';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ const AuthStack = () => {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='CreateUser' component={CreateUser} />
+        <Stack.Screen name="Recover" component={Recover} />          
       </Stack.Navigator>
     </NavigationContainer>
   )
