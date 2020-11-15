@@ -120,17 +120,20 @@ export default function Home({ navigation }) {
             <View style={styles.investmentBox}>
               <Text style={styles.investmentTitle}>Meus investimentos</Text>
 
-              {investments.map((investment, key) => (
-                <TouchableOpacity style={styles.investmentCard} key={key}>
-                  <View style={styles.investmentCardBorder}>
-                    <View style={styles.investmentCardImage}>
-                      <Text style={styles.investmentCardText}>{`#${key+1}`}</Text>
-                    </View>
-                    <Text style={styles.investmentTitle}>{investment.serie.title}</Text>
-                  </View>
-                </TouchableOpacity>
-              ))
-
+              {investments.map((investment, key) => {
+                if(key < 3) {
+                  return (
+                    <TouchableOpacity style={styles.investmentCard} key={key}>
+                      <View style={styles.investmentCardBorder}>
+                        <View style={styles.investmentCardImage}>
+                          <Text style={styles.investmentCardText}>{`#${key+1}`}</Text>
+                        </View>
+                        <Text style={styles.investmentTitle}>{investment.serie.title}</Text>
+                      </View>
+                    </TouchableOpacity>
+                  );
+              }
+              })
               }
 
               <View style={styles.investmentBoxButton}>
