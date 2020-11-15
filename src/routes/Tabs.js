@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome, AntDesign, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome, AntDesign, FontAwesome5, MaterialIcons, Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const { Navigator, Screen } = createBottomTabNavigator();
@@ -75,7 +75,7 @@ export default function Tabs() {
                     component={Friends}
                     options={{
                         tabBarIcon: ({color}) => {
-                            return (<FontAwesome5 name="user" size={23} color={color}/>);
+                            return (<Feather name="users" size={26} color={color}/>);
                         }
                     }}
                 />
