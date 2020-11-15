@@ -20,7 +20,6 @@ const LoginProvider = ( { children } ) => {
 
     await api.post('auth', formData).then(response => {
       const { status, data } = response;
-      console.log(status);
 
       if(status * 1 === 203 * 1) {
         if(Array.isArray(data)) {
@@ -44,6 +43,10 @@ const LoginProvider = ( { children } ) => {
         setErrorMessages([]);
       }
     });
+
+    if(errorMessages[0] !== undefined) {
+      return errorMessages;
+    }
 
     return false;
   };

@@ -11,29 +11,36 @@ export default function Feed() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-      getPostsByUser();
+      const isMounted = true;
+      getPostsByUser(isMounted);
+
+      return () => {
+        isMounted = false;
+      }
     }, []);
 
-    function getPostsByUser(){
-      api.get('posts').then(response => {
-        if(response.data.length !== 0){
-          let postsByUser = [];
-          response.data.map(post => {
-            return (
-              post.series.map((item, index) => {
-                const data = {
-                  post_id: index + 1,
-                  user_id: post.user.id,
-                  username: `${post.user.firstName} ${post.user.lastName}`,
-                  ...item.serie
-                }
-                postsByUser.push(data);
-              })
-            );
-          });
-          setPosts(postsByUser);
-        }
-      });
+    function getPostsByUser(isMounted){
+      if(isMounted) {
+        api.get('posts').then(response => {
+          if(response.data.length !== 0){
+            let postsByUser = [];
+            response.data.map(post => {
+              return (
+                post.series.map((item, index) => {
+                  const data = {
+                    post_id: index + 1,
+                    user_id: post.user.id,
+                    username: `${post.user.firstName} ${post.user.lastName}`,
+                    ...item.serie
+                  }
+                  postsByUser.push(data);
+                })
+              );
+            });
+            setPosts(postsByUser);
+          }
+        });
+      }
     }
 
     function handleNavigateToHome(){

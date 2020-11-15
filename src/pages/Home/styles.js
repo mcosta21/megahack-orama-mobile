@@ -70,7 +70,7 @@ export default StyleSheet.create({
         fontFamily: 'Ubuntu_700Bold',
         fontSize: 17
     },
-    investmentDescription: {
+    investmentTitle: {
         color: '#FFF',
         fontFamily: 'Ubuntu_500Medium',
         fontSize: 16,

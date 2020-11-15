@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Feather, AntDesign } from '@expo/vector-icons';
-import { View, Text, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import Card from '../../components/Card';
 import { useNavigation } from '@react-navigation/native';
@@ -13,8 +13,12 @@ import TitleWelcome from '../../components/TitleWelcome';
 
 import { LoginContext } from '../../contexts/LoginContext';
 
+import api from '../../services/api';
+
 export default function Home({ navigation }) {
   const context = useContext(LoginContext);
+
+  const [investments, setInvestments] = useState([]);
 
   const { navigate } = useNavigation();
 
@@ -53,6 +57,31 @@ export default function Home({ navigation }) {
   function handleNavigateToSetting(){
     navigate('Setting');
   }
+
+  useEffect(() => {
+    let isMounted = true;
+    
+    const getUserInvestments = async () => {
+      if(isMounted) {
+        await api.get('/investments').then(response => {
+          const { status, data } = response;
+
+          console.log(`.`);
+          console.log(data);
+
+          if(status === 200) {
+            setInvestments(data);
+          }
+        });
+      }
+    }
+
+    getUserInvestments();
+
+    return () => {
+      isMounted = false;
+    }
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -94,32 +123,18 @@ export default function Home({ navigation }) {
             <View style={styles.investmentBox}>
               <Text style={styles.investmentTitle}>Meus investimentos</Text>
 
-              <RectButton style={styles.investmentCard}>
-                <View style={styles.investmentCardBorder}>
-                  <View style={styles.investmentCardImage}>
-                    <Text style={styles.investmentCardText}>#1</Text>
+              {investments.map((investment, key) => (
+                <TouchableOpacity style={styles.investmentCard}>
+                  <View style={styles.investmentCardBorder}>
+                    <View style={styles.investmentCardImage}>
+                      <Text style={styles.investmentCardText}>{`#${key+1}`}</Text>
+                    </View>
+                    <Text style={styles.investmentTitle}>{investment.serie.title}</Text>
                   </View>
-                  <Text style={styles.investmentDescription}>Teste 1</Text>
-                </View>
-              </RectButton>
+                </TouchableOpacity>
+              ))
 
-              <RectButton style={styles.investmentCard}>
-                <View style={styles.investmentCardBorder}>
-                  <View style={styles.investmentCardImage}>
-                    <Text style={styles.investmentCardText}>#1</Text>
-                  </View>
-                  <Text style={styles.investmentDescription}>Teste 1</Text>
-                </View>
-              </RectButton>
-
-              <RectButton style={styles.investmentCard}>
-                <View style={styles.investmentCardBorder}>
-                  <View style={styles.investmentCardImage}>
-                    <Text style={styles.investmentCardText}>#1</Text>
-                  </View>
-                  <Text style={styles.investmentDescription}>Teste 1</Text>
-                </View>
-              </RectButton>
+              }
 
               <View style={styles.investmentBoxButton}>
                 <RectButton onPress={() => {}} style={styles.investmentButton}>
