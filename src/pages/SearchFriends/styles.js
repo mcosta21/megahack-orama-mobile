@@ -42,6 +42,32 @@ export default StyleSheet.create({
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+
+    boxFriend: {
+        paddingVertical: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+    },
+    boxFriendContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    userImage: {
+        width: 80,
+        height: 80,
+        borderWidth: 2,
+        borderRadius: 9,
+        borderColor: '#34F683',
+    },
+    userName: {
+        marginLeft: 15,
+        color: '#FFF',
+        fontFamily: 'Ubuntu_500Medium',
+        fontSize: 16,
+
     }
 
 });
