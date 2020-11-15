@@ -3,7 +3,7 @@ import { AppLoading } from 'expo';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts, Ubuntu_400Regular, Ubuntu_500Medium, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
 import { Barlow_900Black } from '@expo-google-fonts/barlow';
-import AppStack from './src/routes/AppStack';
+import Routes from './src/routes/';
 
 import LoginProvider from './src/contexts/LoginContext';
 
@@ -21,7 +21,7 @@ export default function App() {
   }
   return (
     <LoginProvider>
-      <AppStack />
+      <Routes />
       <StatusBar style="light"/>
     </LoginProvider>
   );

@@ -10,6 +10,7 @@ export default function TitleWelcome({ title, description}){
                 description !== undefined &&
                 <Text style={styles.welcomePhrase}>{description}</Text>
             }
+
         </View>
     );
 }
