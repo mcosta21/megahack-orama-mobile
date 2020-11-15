@@ -74,7 +74,8 @@ export default StyleSheet.create({
         color: '#FFF',
         fontFamily: 'Ubuntu_500Medium',
         fontSize: 16,
-        marginLeft: 20
+        marginLeft: 20,
+        marginVertical: 20
     },
 
 
