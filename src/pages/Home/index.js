@@ -65,7 +65,7 @@ export default function Home({ navigation }) {
       if(isMounted) {
         await api.get('/investments').then(response => {
           const { status, data } = response;
-          console.log(status);
+          
           if(status === 200) {
             setInvestments(data);
           }

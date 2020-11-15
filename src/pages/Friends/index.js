@@ -56,7 +56,7 @@ export default function Friends(){
           >
             <View style={styles.resultContainer}>
               {friends?.map((friend, key) => (
-                <View style={styles.boxFriend}>
+                <View style={styles.boxFriend} key={key}>
                   <View style={styles.boxFriendContent}>
                     <Image source={userImage} style={styles.userImage}/>
                     <Text style={styles.userName}>{friend.firstName} {friend.lastName}</Text>

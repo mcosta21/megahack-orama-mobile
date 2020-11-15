@@ -86,7 +86,9 @@ const LoginProvider = ( { children } ) => {
     <LoginContext.Provider value={{
       id,
       firstName,
+      setFirstName,
       lastName,
+      setLastName,
       email,
       yieldReceived,
       errorMessages,
