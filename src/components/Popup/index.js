@@ -3,7 +3,7 @@ import styles from './styles';
 import { Text, View, Modal, ScrollView } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function Popup({ children, ...rest }){
+export default function Popup({ title, children, ...rest }){
 
     return (
         <Modal
@@ -17,12 +17,10 @@ export default function Popup({ children, ...rest }){
 
                     <View style={styles.modalBorderTitle}>
                         <FontAwesome5 style={styles.modalIcon} name="sad-cry" size={24} color="#34F683"/>
-                        <Text style={styles.modalTitle}>Desculpe, mas...</Text>
+                        <Text style={styles.modalTitle}>{title === undefined ? 'Informações': title}</Text>
                     </View>  
 
                     <ScrollView style={styles.modalScroll}>
-                        
-                       
 
                         {
                             children

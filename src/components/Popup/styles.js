@@ -22,21 +22,10 @@ export default StyleSheet.create({
         borderTopRightRadius: 9,
     },
     modalScroll: {
-        padding: 20
+        paddingHorizontal: 20,
     },
-    buttonCloseModal: {
-        margin: 20,
-        backgroundColor: '#24AC6E',
-        height: 60,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 8,
-    },
-    textCloseModal: {
-        color: '#232B32',
-        fontSize: 22,
-        fontFamily: 'Ubuntu_700Bold',
-    },
+    
+
     modalBorderTitle: {
         padding: 20,
         borderBottomWidth: 1,

@@ -27,6 +27,20 @@ export default StyleSheet.create({
         fontFamily: 'Ubuntu_700Bold'
     },
 
+    body: {
+        width: '100%',
+        backgroundColor: '#232B32',
+        flex: 1,
+        borderRadius: 9,
+        padding: 20,
+    },
+    form: {
+        marginTop: 5,
+        borderTopWidth: 1,
+        borderColor: '#1A2126',
+        paddingTop: 20,
+    },
+
     boxText: {
         paddingBottom: 10,
         width: '100%',
@@ -65,7 +79,7 @@ export default StyleSheet.create({
         fontSize: 13,
         color: '#24AC6E',
         fontFamily: 'Ubuntu_500Medium',
-        marginBottom: 10,
+        marginBottom: 20,
     },
     SignUp:{
         width: '100%',
@@ -75,6 +89,20 @@ export default StyleSheet.create({
         fontSize: 22,
         color: '#FFF',
         fontFamily: 'Ubuntu_500Medium',
-    }
+    },
+
+    buttonCloseModal: {
+        marginVertical: 20,
+        backgroundColor: '#24AC6E',
+        height: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 8,
+    },
+    textCloseModal: {
+        color: '#232B32',
+        fontSize: 22,
+        fontFamily: 'Ubuntu_700Bold',
+    },
 
 });
