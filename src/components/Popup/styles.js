@@ -4,7 +4,7 @@ export default StyleSheet.create({
 
     modalBody: {
         height: '100%',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     modal: {
         width: '100%',
@@ -38,6 +38,7 @@ export default StyleSheet.create({
         fontFamily: 'Ubuntu_700Bold',
     },
     modalBorderTitle: {
+        padding: 20,
         borderBottomWidth: 1,
         color: '#1A2126',
         flexDirection: 'row',
@@ -46,7 +47,6 @@ export default StyleSheet.create({
         marginRight: 15,
     },
     modalTitle: {
-        marginBottom: 20,
         fontSize: 22,
         fontFamily: 'Ubuntu_700Bold',
         color: '#FFF'
