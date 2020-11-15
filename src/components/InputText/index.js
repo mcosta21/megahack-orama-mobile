@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextInput } from 'react-native';
 import styles from './styles';
 
-export default function InputText({ disabled, isBlack, height, ...rest}) {   
+export default function InputText({ disabled, isBlack, width, height, ...rest}) {   
     const [focus, setFocus] = useState(false);
 
     let theme = {}
@@ -17,6 +17,13 @@ export default function InputText({ disabled, isBlack, height, ...rest}) {
       theme = {
         ...theme,
         height: height
+      }
+    }
+
+    if(width !== undefined){
+      theme = {
+        ...theme,
+        width: width
       }
     }
     
