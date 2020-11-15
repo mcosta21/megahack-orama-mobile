@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { FontAwesome5 } from '@expo/vector-icons';
 import styles from './styles';
-import { Keyboard, TouchableWithoutFeedback, Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground, Modal, ScrollView } from 'react-native';
+import { Keyboard, TouchableWithoutFeedback, Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground } from 'react-native';
 import InputText from '../../components/InputText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { LoginContext } from '../../contexts/LoginContext';
-
+import Popup from '../../components/Popup';
+import Message from '../../components/Message';
 
 export default function Login(){
 
@@ -100,42 +100,28 @@ export default function Login(){
                   <Text style={styles.textSignUp}>Cadastrar</Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
-              <Modal
-                animationType="slide"
-                visible={modalVisible}
-                transparent={true}
-                onRequestClose={() => { setModalVisible(false); }}
-              >
-                  <View style={styles.modal}>
-                    <View style={styles.modalContent}>
-                      <ScrollView style={styles.modalScroll}>
-                        
-                        <View style={styles.modalBorderTitle}>
-                          <FontAwesome5 style={styles.modalIcon} name="sad-cry" size={24} color="#34F683"/>
-                          <Text style={styles.modalTitle}>Desculpe, mas...</Text>
-                        </View>  
 
-                        {
-                          context.errorMessages?.map((error, index) => {
-                            return (
-                              <View key={index} style={styles.message}>
-                                <Text style={styles.messageIndex}>#{index+1}</Text>
-                                <Text style={styles.messageText}>{error.message}</Text>
-                              </View>
-                            )
-                          })
-                        }
+            <Popup
+              visible={modalVisible}
+              onRequestClose={() => { setModalVisible(false); }}
+            >
+                {
+                  context.errorMessages?.map((error, index) => {
+                    return (
+                      <Message key={index} index={index} message={error.message} />
+                    )
+                  })
+                }
 
-                      </ScrollView>
-                      <TouchableOpacity
-                        style={styles.buttonCloseModal}
-                        onPress={() => setModalVisible(false)}
-                      >
-                        <Text style={styles.textCloseModal}>Tudo bem!</Text>
-                      </TouchableOpacity>
-                    </View>
-                </View>
-              </Modal>
+                <TouchableOpacity
+                  style={styles.buttonCloseModal}
+                  onPress={() => setModalVisible(false)}
+                >
+                  <Text style={styles.textCloseModal}>Tudo bem!</Text>
+                </TouchableOpacity>
+            </Popup>
+
+
           </ImageBackground>    
         </SafeAreaView>
       </TouchableWithoutFeedback> 
