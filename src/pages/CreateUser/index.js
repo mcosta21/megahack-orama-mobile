@@ -34,12 +34,6 @@ export default function CreateUser(){
       setPassword('');
       setModalVisible(false);
     }
-
-    // else {
-    //   if(context.errorMessages !== undefined) {
-    //     setModalVisible(true);
-    //   }
-    // }
   }
 
     return (
