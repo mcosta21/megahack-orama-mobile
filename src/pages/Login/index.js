@@ -34,8 +34,6 @@ export default function Login(){
 
     async function handleSubmitSignIn(){
       await context.signIn(email, password);
-      setEmail('');
-      setPassword('');
 
       if(context.errorMessages[0] !== undefined) {
         setModalVisible(true);
