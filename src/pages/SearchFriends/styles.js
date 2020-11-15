@@ -52,7 +52,9 @@ export default StyleSheet.create({
     },
     boxFriendContent: {
         flexDirection: 'row',
+        width: '100%',
         alignItems: 'center',
+        justifyContent: 'space-between',
     },
     userImage: {
         width: 80,
@@ -66,7 +68,11 @@ export default StyleSheet.create({
         color: '#FFF',
         fontFamily: 'Ubuntu_500Medium',
         fontSize: 16,
-
+    },
+    userData: {
+        flexDirection: 'row',
+        alignItems: 'center',
     }
+
 
 });

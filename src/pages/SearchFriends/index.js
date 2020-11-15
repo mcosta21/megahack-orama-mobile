@@ -16,37 +16,37 @@ export default function SearchFriends(){
     const context = useContext(LoginContext);
 
     const userId = context.id;
-    const [friends, setFriends] = useState([]);
-    const [friend, setFriend] = useState();
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
+      setUsers([]);
       api.get('users').then(response => {
-        const users = response.data;
-
-        const usersWithoutMe = users.filter(user => user.id !== userId && user );
-        
-        api.get('friends').then(response => {
-          const friends = response.data;
-
-          const NotMyFriends = usersWithoutMe.filter(user => {
-            return (
-                console.log(user)
-            )
+        if(response.status === 200) {
+          response.data.map(user => {
+            if(user.id !== userId)
+              setUsers(users => [...users, user]);
           })
-        });
-
-        setFriends(users);
-    });
+        }
+      });
     }, []);
 
     function handleNavigateToHome(){
       navigate('Home');
     }
 
-    function handleClickAddFriend(){
-      console.log('add')
+    function handleClickAddFriend(id){
+      const formData = {
+        friendId: id
+      }
+      api.post('friends', formData).then(response => {
+        navigate('Friends');
+      });
     }
 
+    function handleClickSearch() {
+      alert('To do');
+    }
+   
     return (
 
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -71,41 +71,39 @@ export default function SearchFriends(){
                         placeholder="Pesquisar por amigo"
                         name="search"
                         autoCorrect={false}
-                        value={friend}
-                        onChangeText={value => setFriend(value)}
                         width={250}
                       />
                       <TouchableOpacity
                         style={styles.buttonSearch}
-                        onPress={() => handleClickSearch()}
+                        onPress={handleClickSearch}
                       >
                         <FontAwesome name="search" size={24} color="#24AC6E" />
                       </TouchableOpacity>
                     </View>
 
-                    {
-                       friends?.map((friend, index) => {
-                        return (
-                          <TouchableOpacity 
-                            key={index}
-                            style={styles.boxFriend}
-                          >
-                            <View style={styles.boxFriendContent}>
-                              <Image source={userImage} style={styles.userImage}/>
-                              <Text style={styles.userName}>{`${friend.firstName} ${friend.lastName}`}</Text>
-                            </View>
-                            <Feather 
-                              onPress={() => handleClickAddFriend()}
-                              name="plus-circle" 
-                              size={24} 
-                              color="#24AC6E" 
-                            />
-                          </TouchableOpacity>
-                        )
-                      })
+                    {users?.map((user, key) => (
+                      <View 
+                        key={key} 
+                        style={styles.boxFriend}
+                      >
+                        <View style={styles.boxFriendContent}>
+                          <View style={styles.userData}>
+                            <Image source={userImage} style={styles.userImage}/>
+                            <Text style={styles.userName}>{`${user.firstName} ${user.lastName}`}</Text>
+                          </View>
+                          <View>
+                            <TouchableOpacity onPress={() => handleClickAddFriend(user.id)}>
+                              <Feather 
+                                  name="plus-circle" 
+                                  size={24} 
+                                  color="#24AC6E"
+                              />
+                            </TouchableOpacity>
+                          </View>
+                        </View>
+                      </View>
+                    ))
                     }
-                    
-
                   </View>
                 </ScrollView>
 

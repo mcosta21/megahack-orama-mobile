@@ -12,6 +12,9 @@ const LoginProvider = ( { children } ) => {
   const [errorMessages, setErrorMessages] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const logOut = () => {
+    setId(null);
+  }
   
   const signIn = async (email, password) => {
     setLoading(true);
@@ -105,6 +108,7 @@ const LoginProvider = ( { children } ) => {
       errorMessages,
       signIn,
       signUp,
+      logOut,
     }}>
         { children }
     </LoginContext.Provider>
