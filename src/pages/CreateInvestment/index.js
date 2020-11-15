@@ -7,6 +7,8 @@ import { AntDesign, Entypo  } from '@expo/vector-icons';
 import TitleWelcome from '../../components/TitleWelcome';
 import api from '../../services/api';
 import { LinearGradient } from 'expo-linear-gradient';
+import Popup from '../../components/Popup';
+import Message from '../../components/Message';
 
 export default function CreateInvestment(){
     const { navigate } = useNavigation();
@@ -22,6 +24,9 @@ export default function CreateInvestment(){
     const [series, setSeries] = useState(defaultSeries);
     const [serie, setSerie] = useState(defaultSerie);
     const [privateBool, setPrivateBool] = useState(true);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [messages, setMessages] = useState([]);
+    const [successRequest, setSuccessRequest] = useState(false);
 
     useEffect(() => {
         const isMounted = true;
@@ -60,19 +65,42 @@ export default function CreateInvestment(){
         const days = serie.duration*24*60*60*1000;
         const expirationDate = new Date(Date.now() + days);
 
-        const data = {
+        const formData = {
             expirationDate,
             privateBool,
             serieId: serie.id
         }
 
-        api.post('investments', data).then(response => {
-            console.log(response);
+        api.post('investments', formData).then(response => {
+            const { status, data} = response;
+
+            switch(status){
+                case 201:
+                    console.log('201')
+                    setSuccessRequest(true);
+                    setMessages([{ "message": "Seu investimento foi realizado com sucesso."}])
+                break;
+                case 203:
+                    console.log('203')
+                    setSuccessRequest(false);
+                    setMessages([data]);
+                break;
+            }
+            setModalVisible(true);
         });
     }
 
     function handleCancelSubmit() {
-        
+        handleNavigateToHome();
+        setMessages([]);
+        setSerie(defaultSerie);
+        setSeries(defaultSeries);
+        setCategory();
+    }
+
+    function handleClickSuccesRequest(){
+        setModalVisible(false);
+        handleCancelSubmit();
     }
 
     return (
@@ -242,7 +270,6 @@ export default function CreateInvestment(){
                     >
                         <TouchableOpacity
                             onPress={() => handleSubmit()}
-                            disabled={serie.id > 0 ? false : true}
                             style={styles.buttonSubmit}
                         >
                             <Text style={styles.textSubmit}>Confirmar</Text>
@@ -257,6 +284,42 @@ export default function CreateInvestment(){
                     </TouchableOpacity>
 
                 </ScrollView>
+
+                <Popup
+                    title={successRequest ? 'Parabéns' : 'Ops, mas...'}
+                    isHappyIcon={successRequest ? true : false}
+                    visible={modalVisible && messages.length > 0}
+                    onRequestClose={() => { setModalVisible(false); }}
+                >
+                    {
+                        messages.map((error, index) => {
+                            return (
+                            <Message key={index} index={index} message={error.message} />
+                            )
+                        })
+                    }
+
+                    {
+                         successRequest === true
+                         ?
+                         <TouchableOpacity
+                             style={styles.buttonCloseModal}
+                             onPress={() => handleClickSuccesRequest()}
+                         >
+                             <Text style={styles.textCloseModal}>Yesss!!!</Text>
+                         </TouchableOpacity>
+                         :
+                         <TouchableOpacity
+                             style={styles.buttonCloseModal}
+                             onPress={() => setModalVisible(false)}
+                         >
+                             <Text style={styles.textCloseModal}>Tudo bem!</Text>
+                         </TouchableOpacity>
+                    }
+
+                    
+                </Popup>
+                
             </SafeAreaView>
         </View>
     )

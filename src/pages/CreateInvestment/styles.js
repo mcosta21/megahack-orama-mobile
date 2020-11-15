@@ -171,6 +171,20 @@ export default StyleSheet.create({
         borderLeftWidth: 2,
         borderColor: '#34F683',
         backgroundColor: '#182024'
-    }
+    },
+
+    buttonCloseModal: {
+        marginVertical: 20,
+        backgroundColor: '#24AC6E',
+        height: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 8,
+    },
+    textCloseModal: {
+        color: '#232B32',
+        fontSize: 22,
+        fontFamily: 'Ubuntu_700Bold',
+    },
 
 });

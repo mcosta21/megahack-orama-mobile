@@ -23,6 +23,7 @@ const LoginProvider = ( { children } ) => {
       const { status, data } = response;
 
       if(status * 1 === 203 * 1) {
+
         if(Array.isArray(data)) {
           setErrorMessages(data);
         }
@@ -52,7 +53,7 @@ const LoginProvider = ( { children } ) => {
     return false;
   };
 
-  const signUp = async (firstName, lastName, email, password, passwordConfirmation) => {
+  const signUp = (firstName, lastName, email, password, passwordConfirmation) => {
     setErrorMessages([]);
     const formData = {
       "firstName": firstName,
@@ -63,7 +64,7 @@ const LoginProvider = ( { children } ) => {
       "yieldReceived": 0
     }
 
-    await api.post('/users', formData).then(response => {
+    api.post('/users', formData).then(response => {
       const { status, data } = response;
 
       if(status === 201) {
