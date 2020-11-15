@@ -24,10 +24,21 @@ export default function CreateInvestment(){
     const [privateBool, setPrivateBool] = useState(true);
 
     useEffect(() => {
-        api.get('categories').then(response => {
-            const categories = response.data;
-            setCategories(categories);
-        });
+        const isMounted = true;
+        const getCategories = async () => {
+            if(isMounted) {
+                await api.get('categories').then(response => {
+                    const categories = response.data;
+                    setCategories(categories);
+                });
+            }
+        }
+
+        getCategories();
+
+        return () => {
+            isMounted = false;
+        }
     }, []);
 
     

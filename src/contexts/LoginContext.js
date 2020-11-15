@@ -45,6 +45,10 @@ const LoginProvider = ( { children } ) => {
       }
     });
 
+    if(errorMessages[0] !== undefined) {
+      return errorMessages;
+    }
+
     return false;
   };
 

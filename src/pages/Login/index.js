@@ -27,16 +27,10 @@ export default function Login(){
     }
 
     async function handleSubmitSignIn(){
-      await context.signIn(email, password);
-
-      if(context.errorMessages[0] !== undefined) {
+      const errors = await context.signIn(email, password);
+      
+      if(errors !== false) {
         setModalVisible(true);
-      }
-
-      else {
-        if(context.errorMessages !== undefined) {
-          setModalVisible(true);
-        }
       }
     }
 
