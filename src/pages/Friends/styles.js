@@ -4,10 +4,13 @@ import Constants from 'expo-constants';
 export default StyleSheet.create({
   container:{
     flex: 1,
-    paddingHorizontal: 24,
+    paddingTop: Constants.statusBarHeight,
     backgroundColor: '#182024',
-    paddingTop: Constants.statusBarHeight + 20,
-    flexDirection: "column"
+  },
+  image: {
+      flex: 1,
+      resizeMode: "cover",
+      paddingHorizontal: 24,
   },
   header: {
     flexDirection: "row",
