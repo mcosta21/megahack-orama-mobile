@@ -27,23 +27,14 @@ export default function CreateInvestment(){
     const [modalVisible, setModalVisible] = useState(false);
     const [messages, setMessages] = useState([]);
     const [successRequest, setSuccessRequest] = useState(false);
+    const [postDescription, setPostDescription] = useState();
+    const [postTitle, setPostTitle] = useState();
 
     useEffect(() => {
-        const isMounted = true;
-        const getCategories = async () => {
-            if(isMounted) {
-                await api.get('categories').then(response => {
-                    const categories = response.data;
-                    setCategories(categories);
-                });
-            }
-        }
-
-        getCategories();
-
-        return () => {
-            isMounted = false;
-        }
+        api.get('categories').then(response => {
+            const categories = response.data;
+            setCategories(categories);
+        });
     }, []);
 
     
@@ -79,6 +70,18 @@ export default function CreateInvestment(){
                     console.log('201')
                     setSuccessRequest(true);
                     setMessages([{ "message": "Seu investimento foi realizado com sucesso."}])
+
+                    if(privateBool === true) {
+                        const postData = {
+                            title: postTitle === undefined ? data.serie.title : postTitle,
+                            description: postDescription === undefined ? 'Olhe o meu novo investimento!' : postDescription,
+                            investmentId: data.id,
+                        }
+                        api.post('posts', postData).then(response => {
+                            console.log(response.status);
+                        })
+                    }
+                    
                 break;
                 case 203:
                     console.log('203')
@@ -246,6 +249,34 @@ export default function CreateInvestment(){
                                     <Text style={styles.textPrivateBool}>Não</Text>
                                 </TouchableOpacity>
                             </View>
+                            
+                            {
+                                privateBool === true 
+                                &&
+                                <>
+                                    <View style={styles.boxText}>
+                                        <Text style={styles.text}>Título do Post</Text>
+                                    </View>
+                                    <InputText 
+                                        name="postTitle"
+                                        isBlack={true}
+                                        value={postTitle}
+                                        onChangeText={(text) => setPostTitle(text)}
+                                    />
+
+                                    <View style={styles.boxText}>
+                                        <Text style={styles.text}>Descrição do Post</Text>
+                                    </View>
+                                    <InputText 
+                                        name="postDescription"
+                                        height={100}
+                                        isBlack={true}
+                                        value={postDescription}
+                                        onChangeText={(text) => setPostDescription(text)}
+                                    />
+                                </>
+                            }
+                            
                         </View>
 
                         {
