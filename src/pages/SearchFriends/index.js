@@ -20,31 +20,28 @@ export default function SearchFriends(){
     const [friend, setFriend] = useState();
 
     useEffect(() => {
-      api.get('users').then(response => {
-        const users = response.data;
-
-        const usersWithoutMe = users.filter(user => user.id !== userId && user );
-        
-        api.get('friends').then(response => {
-          const friends = response.data;
-
-          const NotMyFriends = usersWithoutMe.filter(user => {
-            return (
-                console.log(user)
-            )
-          })
-        });
-
-        setFriends(users);
-    });
+      getUnknownUsers();     
     }, []);
 
+    function getUnknownUsers(){
+      api.get('friends/unknown').then(response => {
+        const unknowns = response.data;
+        setFriends(unknowns);
+      });
+    }
     function handleNavigateToHome(){
       navigate('Home');
     }
 
-    function handleClickAddFriend(){
-      console.log('add')
+    function handleClickAddFriend(id){
+      const data = {
+        friendId: id
+      }
+      api.post('friends', data).then(response => {
+        console.log(response.data);
+        console.log('add')
+        getUnknownUsers();
+      });
     }
 
     return (
@@ -95,7 +92,7 @@ export default function SearchFriends(){
                               <Text style={styles.userName}>{`${friend.firstName} ${friend.lastName}`}</Text>
                             </View>
                             <Feather 
-                              onPress={() => handleClickAddFriend()}
+                              onPress={() => handleClickAddFriend(friend.id)}
                               name="plus-circle" 
                               size={24} 
                               color="#24AC6E" 
