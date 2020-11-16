@@ -120,39 +120,86 @@ $ npm start ou yarn start
 
 ## Autores
 
-Marcio Costa 
 
 <table>
   <tr>
-  <td>
-  <a href="https://github.com/mcosta21/megahack-orama-server">
-      <img alt="Server" width="50"  src="https://github.com/mcosta21/megahack-orama-mobile/blob/main/docs/image%202.png?raw=true"/>
-</a>
-  </td>
-  <td>
-  Marcio Costa
-  </td>
-  <td>
-  <a href="https://www.linkedin.com/in/marcio-costa-03131a149/">LinkedIn</a>
-  </td>
-  <td>
-  <a href="https://github.com/mcosta21">GitHub</a>
-  </td>
+  </tr>
+  <tr>
+    <td>
+    <a href="https://github.com/mcosta21/">
+        <img alt="Server" width="50"  src="https://github.com/mcosta21/megahack-orama-mobile/blob/main/docs/image%202.png?raw=true"/>
+  </a>
+    </td>
+    <td>
+    Marcio Costa
+    </td>
+    <td>
+    <a href="https://www.linkedin.com/in/marcio-costa-03131a149/">LinkedIn</a>
+    </td>
+    <td>
+    <a href="https://github.com/mcosta21">GitHub</a>
+    </td>
+  </tr>
+</table>
+<table>
+  <tr>
+  </tr>
+  <tr>
+    <td>
+    <a href="https://github.com/ladeira1">
+        <img alt="Server" width="50"  src="https://github.com/mcosta21/megahack-orama-mobile/blob/main/docs/image%201.png?raw=true"/>
+  </a>
+    </td>
+    <td>
+    Victor Ladeira
+    </td>
+    <td>
+    <a href="https://linkedin.com/in/ladeira1/">LinkedIn</a>
+    </td>
+    <td>
+    <a href="https://github.com/ladeira1">GitHub</a>
+    </td>
   </tr>
 </table>
 
+<table>
+  <tr>
+  </tr>
+  <tr>
+    <td>
+    <a href="https://github.com/thiagogoulart95">
+        <img alt="Server" width="50"  src="https://github.com/mcosta21/megahack-orama-mobile/blob/main/docs/image%203.png?raw=true"/>
+  </a>
+    </td>
+    <td>
+    Thiago Goulart
+    </td>
+    <td>
+    <a href="https://www.linkedin.com/in/othiagogoulart/">LinkedIn</a>
+    </td>
+    <td>
+    <a href="https://github.com/thiagogoulart95">GitHub</a>
+    </td>
+  </tr>
+</table>
 
-
-
-
-Victor Ladeira 
-- [LinkedIn](https://linkedin.com/in/ladeira1/)
-- [GitHub](https://github.com/ladeira1)
-
-Thiago Goulart
-- [LinkedIn](https://www.linkedin.com/in/othiagogoulart/)
-- [GitHub](https://github.com/thiagogoulart95)
-
-Adriel Medeiros 
-- [LinkedIn](https://www.linkedin.com/in/adriel-medeiros-a69b03128/)
-- [GitHub](https://github.com/Adriel2105)
+<table>
+  <tr>
+  </tr>
+  <tr>
+    <td>
+    <a href="https://github.com/Adriel2105">
+        <img alt="Server" width="50"  src="https://github.com/mcosta21/megahack-orama-mobile/blob/main/docs/image%204.png?raw=true"/>
+  </a>
+    </td>
+    <td>
+    Thiago Goulart
+    </td>
+    <td>
+    <a href="https://www.linkedin.com/in/adriel-medeiros-a69b03128/">LinkedIn</a>
+    </td>
+    <td>
+    <a href="https://github.com/Adriel2105">GitHub</a>
+    </td>
+  </tr>
+</table>
