@@ -46,10 +46,6 @@ export default function Home({ navigation }) {
     }
   ];
 
-  function handleNavigate(path) {
-    navigate(path)
-  }
-
   function handleNavigateToDrawer(){
     navigation.openDrawer();
   }
@@ -62,10 +58,10 @@ export default function Home({ navigation }) {
     let isMounted = true;
     
     const getUserInvestments = async () => {
-      if(isMounted) {
+      if(isMounted) { 
         await api.get('/investments').then(response => {
           const { status, data } = response;
-          console.log(status);
+          
           if(status === 200) {
             setInvestments(data);
           }
@@ -109,7 +105,6 @@ export default function Home({ navigation }) {
                       secondLine={card.secondLine} 
                       category={card.category}
                       image={card.image}
-                      onPress={() => handleNavigate(card.path)}
                     />
                   )
                 })

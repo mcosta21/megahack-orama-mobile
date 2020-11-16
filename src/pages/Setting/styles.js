@@ -38,7 +38,34 @@ export default StyleSheet.create({
         color: '#34F683',
         fontFamily: 'Ubuntu_700Bold'
     },
-    
+    infoContainer: {
+        width: '100%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        alignItems: 'center',
+        backgroundColor: '#232b32',
+        borderRadius: 8,
+    },
+    infoContent: {
+        width: '90%',
+    },
+    avatarContent: {
+        borderBottomWidth: 1,
+        borderColor: '#1a2126',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    userImage: {
+        marginTop: 40,
+    },
+    username: {
+        fontFamily: 'Ubuntu_700Bold',
+        fontSize: 22,
+        lineHeight: 25,
+        color: '#fff',
+        marginTop: 15,
+        marginBottom: 15,
+    },
     boxText: {
         paddingBottom: 10,
         width: '100%',

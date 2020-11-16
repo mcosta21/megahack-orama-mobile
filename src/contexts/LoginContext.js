@@ -10,25 +10,33 @@ const LoginProvider = ( { children } ) => {
   const [email, setEmail] = useState('');
   const [yieldReceived, setYieldReceived] = useState(null);
   const [errorMessages, setErrorMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  const logOut = () => {
+    setId(null);
+  }
   
-  const signIn = (email, password) => {
+  const signIn = async (email, password) => {
+    setLoading(true);
     setErrorMessages([]);
+    let result;
+
     const formData = {
       "email": email !== undefined ? email.toLowerCase() : undefined,
       "password": password,
     }
 
-    api.post('auth', formData).then(response => {
+    await api.post('auth', formData).then(response => {
       const { status, data } = response;
 
-      if(status * 1 === 203 * 1) {
-
+      if(status === 203) {
         if(Array.isArray(data)) {
           setErrorMessages(data);
+          result = data;
         }
         else {
           setErrorMessages([data]);
+          result = [data];
         }
       }
 
@@ -43,18 +51,19 @@ const LoginProvider = ( { children } ) => {
         setEmail(email);
         setYieldReceived(yieldReceived);
         setErrorMessages([]);
+
+        result = false;
       }
     });
 
-    if(errorMessages[0] !== undefined) {
-      return errorMessages;
-    }
-
-    return false;
+    setLoading(false);    
+    return result;
   };
 
   const signUp = (firstName, lastName, email, password, passwordConfirmation) => {
+    setLoading(true);
     setErrorMessages([]);
+
     const formData = {
       "firstName": firstName,
       "lastName": lastName,
@@ -66,17 +75,21 @@ const LoginProvider = ( { children } ) => {
 
     api.post('/users', formData).then(response => {
       const { status, data } = response;
-
       if(status === 201) {
+
         signIn(email, password);
       }
 
       if(status === 203) {
         if(Array.isArray(data)) {
           setErrorMessages(data);
+          setLoading(false);
+          return data;
         }
         else {
           setErrorMessages([data]);
+          setLoading(false);
+          return data;
         }
       }
     });
@@ -86,12 +99,16 @@ const LoginProvider = ( { children } ) => {
     <LoginContext.Provider value={{
       id,
       firstName,
+      setFirstName,
       lastName,
+      setLastName,
       email,
+      loading,
       yieldReceived,
       errorMessages,
       signIn,
       signUp,
+      logOut,
     }}>
         { children }
     </LoginContext.Provider>

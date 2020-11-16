@@ -30,7 +30,7 @@ export default StyleSheet.create({
   backgroundImage: {
     marginTop: 20,
     width: '100%',
-    height: 60,
+    flex: 1,
     borderRadius: 8,
   },
   boxFriend: {

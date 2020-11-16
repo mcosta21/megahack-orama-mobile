@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, View, Text, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import InputText from '../../components/InputText';
 import styles from './styles';
@@ -12,6 +12,7 @@ import Message from '../../components/Message';
 
 export default function CreateInvestment(){
     const { navigate } = useNavigation();
+    const [loading, setLoading] = useState(false);
 
     const defaultSeries = [
         {"id": 0, "name": "" },
@@ -52,7 +53,7 @@ export default function CreateInvestment(){
     }
 
     function handleSubmit(){
-        
+        setLoading(true);
         const days = serie.duration*24*60*60*1000;
         const expirationDate = new Date(Date.now() + days);
 
@@ -90,7 +91,10 @@ export default function CreateInvestment(){
                 break;
             }
             setModalVisible(true);
-        });
+            setLoading(false);
+        }).catch(err => {
+            setLoading(false);
+        })
     }
 
     function handleCancelSubmit() {
@@ -195,6 +199,7 @@ export default function CreateInvestment(){
                                 height={130}
                                 disabled={true}
                                 isBlack={true}
+                                multiline={true}
                                 value={serie.description}
                                 onChangeText={() => {}}
                             />
@@ -271,6 +276,7 @@ export default function CreateInvestment(){
                                         name="postDescription"
                                         height={100}
                                         isBlack={true}
+                                        multiline={true}
                                         value={postDescription}
                                         onChangeText={(text) => setPostDescription(text)}
                                     />
@@ -303,7 +309,12 @@ export default function CreateInvestment(){
                             onPress={() => handleSubmit()}
                             style={styles.buttonSubmit}
                         >
-                            <Text style={styles.textSubmit}>Confirmar</Text>
+                            {   loading? (
+                                <ActivityIndicator size={30} color='#000'/>
+                            ) : (
+                                <Text style={styles.textSubmit}>Confirmar</Text>
+                            )
+                            }
                         </TouchableOpacity>
                     </LinearGradient>
 

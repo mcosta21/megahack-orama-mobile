@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, } from '@react-navigation/drawer';
 import Tabs from './Tabs';
+import { LoginContext } from '../contexts/LoginContext';
 
 const { Navigator, Screen } = createDrawerNavigator();
 
@@ -17,6 +18,7 @@ export default function Drawer() {
 }
 
 function CustomDrawerComp(props){
+  const context = useContext(LoginContext);
   const { navigation } = props;
 
   return (
@@ -33,12 +35,12 @@ function CustomDrawerComp(props){
         />
         <DrawerItem
           labelStyle={styles.option}
-          label="Teste2"
+          label="Logout"
           activeBackgroundColor='#182024'
           inactiveBackgroundColor='transparent'
           activeTintColor='#34F683'
           inactiveTintColor='#24AC6E'
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => context.logOut()}
         />
       </View>
     </DrawerContentScrollView>
